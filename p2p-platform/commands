@@ -1,0 +1,28 @@
+# Syncing files with remote server
+rsync -avz --progress --exclude backend/myenv --exclude frontend/node_modules . spin-world:/home/ubuntu/app/
+
+# Obtaining New cert
+sudo certbot certonly --nginx -d spin-world.site
+
+# backup db
+sudo docker exec -t app-db-1 pg_dump -U anexx anexx_db > backup_file.sql
+sudo docker exec -i app-db-1 psql -U anexx -d anexx_db < ./backup.sql
+
+
+# Checking services running on port specified
+sudo lsof -i :80
+
+# Adding user sudoers
+sudo usermod -aG sudo username
+
+# removing server from known hosts
+ssh-keygen -R 162.246.21.20
+
+# Conecting to remote server with password only
+ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no root@162.246.21.20
+
+# Applying migrations manually
+sudo docker compose exec backend python3 /app/backend/manage.py migrate
+
+
+

@@ -1,0 +1,23 @@
+/* HeaderComponent.css */
+.header-container {
+  background-color: #f4f4f4;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.header-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Add responsiveness */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 15px 0;
+  }
+
+  .header-image img {
+    border-radius: 4px; /* Slightly less rounding on smaller screens */
+  }
+}
