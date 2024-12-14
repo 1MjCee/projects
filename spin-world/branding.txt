@@ -1,0 +1,3 @@
+primary: #03002e / #010048
+secondary: #DA9100
+tertiary: white
