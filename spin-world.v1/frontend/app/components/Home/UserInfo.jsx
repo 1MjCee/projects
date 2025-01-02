@@ -49,27 +49,21 @@ const UserInfo = () => {
                 </p>
               </Col>
               <Col>
-                <p>
-                  {userInfo?.username && (
-                    <p className="font-weight-bold  mb-1 text-center">
-                      Username:{" "}
-                      <span style={{ color: "#FF8C00" }}>
-                        {userInfo?.username}
-                      </span>
-                    </p>
-                  )}
-                </p>
+                {userInfo?.username && (
+                  <p className="font-weight-bold  mb-1 text-center">
+                    Username:{" "}
+                    <span style={{ color: "#FF8C00" }}>
+                      {userInfo?.username}
+                    </span>
+                  </p>
+                )}
               </Col>
               <Col xs={12}>
-                <p>
-                  {userInfo?.email && (
-                    <p className="font-weight-bold  mb-1 text-center">
-                      <span style={{ color: "#FF8C00" }}>
-                        {userInfo?.email}
-                      </span>
-                    </p>
-                  )}
-                </p>
+                {userInfo?.email && (
+                  <div className="font-weight-bold  mb-1 text-center">
+                    <span style={{ color: "#FF8C00" }}>{userInfo?.email}</span>
+                  </div>
+                )}
               </Col>
             </Row>
 

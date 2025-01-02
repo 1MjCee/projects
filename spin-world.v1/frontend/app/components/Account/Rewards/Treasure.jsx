@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import {
   Container,
@@ -12,8 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   clearMessage,
   promoCodeRedeem,
-} from "../../../store/slices/PromoCodeRedeemSlice";
-import { fetchTransactions } from "../../../store/slices/transactionsSlice";
+} from "@/reduxStore/slices/PromoCodeRedeemSlice";
+import { fetchTransactions } from "@/reduxStore/slices/transactionsSlice";
 
 const DigTreasure = () => {
   const dispatch = useDispatch();
@@ -22,8 +24,8 @@ const DigTreasure = () => {
   );
   const { records } = useSelector((state) => state.transactions);
   const [code, setCode] = useState("");
-  const [currentPage, setCurrentPage] = useState(1); // Starting at page 1
-  const recordsPerPage = 10; // Max 15 records per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 10;
 
   const handleRedeem = () => {
     dispatch(promoCodeRedeem({ code }));

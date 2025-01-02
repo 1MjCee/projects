@@ -1,14 +1,15 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { Container, Form, Button, Row, Col, InputGroup } from "react-bootstrap";
 import SubHeader from "../SubHeader";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../../store/slices/UserSlice";
-import { fetchPaymentTypes } from "../../store/slices/PaymentTypeSlice";
+import { fetchUser } from "@/reduxStore/slices/UserSlice";
+import { fetchPaymentTypes } from "@/reduxStore/slices/PaymentTypeSlice";
 import {
-  sendSmsCode,
   createOrUpdateWithdrawal,
   fetchWithdrawalDetails,
-} from "../../store/slices/WithdrawalSlice";
+} from "@/reduxStore/slices/WithdrawalSlice";
 
 const WithdrawalAccount = () => {
   const dispatch = useDispatch();
@@ -22,10 +23,7 @@ const WithdrawalAccount = () => {
   const [accountNumber, setAccountNumber] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [countryCode, setCountryCode] = useState("");
-  // const [smsCode, setSmsCode] = useState("");
   const [selectedPaymentType, setSelectedPaymentType] = useState("");
-  // const [isCodeSent, setIsCodeSent] = useState(false);
-  // const [isDisabled, setIsDisabled] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -43,6 +41,12 @@ const WithdrawalAccount = () => {
     }
   }, [userInfo]);
 
+  const userPaymentTypes = paymentTypes.filter(
+    (paymentTypes) =>
+      !paymentTypes.country ||
+      paymentTypes.country === userInfo.country.country_code
+  );
+
   useEffect(() => {
     if (withdrawalDetail && Object.keys(withdrawalDetail).length > 0) {
       setName(withdrawalDetail.real_name || "");
@@ -52,17 +56,17 @@ const WithdrawalAccount = () => {
   }, [withdrawalDetail]);
 
   useEffect(() => {
-    if (paymentTypes.length > 0) {
-      setSelectedPaymentType(paymentTypes[0].id);
+    if (userPaymentTypes.length > 0) {
+      setSelectedPaymentType(userPaymentTypes[0].id);
     }
-  }, [paymentTypes]);
+  }, [userPaymentTypes]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Populate with the first option if no selection was made
     if (!selectedPaymentType) {
-      setSelectedPaymentType(paymentTypes[0]?.id);
+      setSelectedPaymentType(userPaymentTypes[0]?.id);
     }
 
     const data = {
@@ -144,7 +148,7 @@ const WithdrawalAccount = () => {
             <Col md={4} xs={12}>
               <Form.Group>
                 <Form.Label className="text-light">
-                  Account/Wallet Address
+                  Number/Address/Email
                 </Form.Label>
                 <Form.Control
                   className="bg-light"
@@ -170,7 +174,7 @@ const WithdrawalAccount = () => {
                   value={selectedPaymentType}
                   onChange={(e) => setSelectedPaymentType(e.target.value)}
                 >
-                  {paymentTypes.map((paymentType) => (
+                  {userPaymentTypes.map((paymentType) => (
                     <option key={paymentType.id} value={paymentType.id}>
                       {paymentType.type}
                     </option>

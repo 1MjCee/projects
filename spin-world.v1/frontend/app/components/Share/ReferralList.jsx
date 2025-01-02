@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchReferralList } from "../../store/slices/ReferralListSlice";
-import { Table, Alert, Spinner, Pagination } from "react-bootstrap"; // Import React Bootstrap components
+import { fetchReferralList } from "@/reduxStore/slices/ReferralListSlice";
+import { Table, Alert, Spinner, Pagination } from "react-bootstrap";
 
 const ReferralList = () => {
   const dispatch = useDispatch();

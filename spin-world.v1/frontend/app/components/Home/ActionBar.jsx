@@ -1,8 +1,8 @@
 import React from "react";
 import { Navbar, Nav, Row, Col, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { PiHandDeposit } from "react-icons/pi";
 import { GiWantedReward } from "react-icons/gi";
+import Link from "next/link";
 
 const ActionNavbar = () => {
   return (
@@ -19,19 +19,20 @@ const ActionNavbar = () => {
       >
         {[
           {
-            to: "/recharge",
+            to: "/dashboard/account/user/financials/deposits",
             icon: <PiHandDeposit size={20} color="#FF8C00" />,
             text: "Recharge",
           },
           {
-            to: "/withdraw",
+            to: "/dashboard/account/user/financials/withdrawals",
             icon: <GiWantedReward size={20} color="#FF8C00" />,
             text: "Withdraw",
           },
         ].map(({ to, icon, text }) => (
-          <Nav.Link
+          <Link
             as={Link}
-            to={to}
+            href={to}
+            passHref
             key={text}
             className="text-center"
             style={{
@@ -51,7 +52,7 @@ const ActionNavbar = () => {
                 {text}
               </div>
             </div>
-          </Nav.Link>
+          </Link>
         ))}
       </Nav>
     </Navbar>

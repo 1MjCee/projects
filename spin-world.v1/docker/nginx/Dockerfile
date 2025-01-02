@@ -1,15 +1,14 @@
-FROM node:22-alpine3.19 as build
-
-WORKDIR /app/frontend
-COPY ./frontend/package.json ./
-COPY ./frontend/package-lock.json ./
-
-RUN npm ci 
-COPY ./frontend/ ./
-
-RUN npm run build
-
-# Copy React static files and start nginx
+# Use the official Nginx image
 FROM nginx:stable-alpine
-COPY --from=build /app/frontend/dist /usr/share/nginx/html
+
+# Set ownership and permissions for the static files
+RUN chown -R nginx:nginx /usr/share/nginx/html && chmod -R 755 /usr/share/nginx/html
+
+# Copy the Nginx configuration file
+COPY docker/nginx/production/default.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80 for Nginx
+EXPOSE 80
+
+# Start Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]

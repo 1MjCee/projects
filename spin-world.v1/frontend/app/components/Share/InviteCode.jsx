@@ -1,10 +1,12 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col, Container, Spinner } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchReferralCode } from "../../store/slices/ReferralCodeSlice";
+import { fetchReferralCode } from "@/reduxStore/slices/ReferralCodeSlice";
 
 const InviteCode = () => {
-  const siteUrl = import.meta.env.VITE_APP_SITE_URL;
+  const siteUrl = process.env.NEXT_PUBLIC_API_URL;
   const dispatch = useDispatch();
   const { referralCode, loading } = useSelector((state) => state.referralCode);
   const inviteLink = referralCode

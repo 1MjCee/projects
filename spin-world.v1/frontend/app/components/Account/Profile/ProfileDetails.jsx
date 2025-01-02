@@ -1,9 +1,11 @@
+"use client";
+
 import { useEffect, useState, useCallback } from "react";
 import { Container, Form, Button, Alert, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, updateUser } from "../../../store/slices/UserSlice";
+import { fetchUser, updateUser } from "@/reduxStore/slices/UserSlice";
 
-const ProfileInfo = () => {
+const ProfileUpdate = () => {
   const dispatch = useDispatch();
 
   // Use memoized selector to prevent unnecessary re-renders
@@ -166,4 +168,4 @@ const ProfileInfo = () => {
   );
 };
 
-export default ProfileInfo;
+export default ProfileUpdate;

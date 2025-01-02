@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchExchangeRates } from "../store/slices/CurrencyRates";
+import { fetchExchangeRates } from "@/reduxStore/slices/CurrencyRates";
 import { Card, Row, Col } from "react-bootstrap";
 
 const CurrencyConverter = ({ amountInBaseCurrency, targetCurrency }) => {
@@ -47,23 +47,23 @@ const CurrencyConverter = ({ amountInBaseCurrency, targetCurrency }) => {
   };
 
   return (
-    <div className="mt-2">
+    <span className="mt-2">
       {targetCurrency !== null ? (
-        <h6>
+        <span>
           <span>{targetCurrency}: </span>
           <span style={{ color: "#DA9100", fontWeight: "bold" }}>
             {formatAmount(convertedAmount, targetCurrency)}
           </span>
-        </h6>
+        </span>
       ) : (
-        <h6>
+        <span>
           <span>USD: </span>
           <span style={{ color: "#DA9100", fontWeight: "bold" }}>
             {formatAmount(amountInBaseCurrency, "USD")}
           </span>
-        </h6>
+        </span>
       )}
-    </div>
+    </span>
   );
 };
 

@@ -1,13 +1,14 @@
+"use client";
+
 import React, { useEffect } from "react";
 import { Row, Col, Container, Spinner, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWalletStats } from "../../store/slices/WalletSlice";
-import { fetchUser } from "../../store/slices/UserSlice";
-import CurrencyFormatter from "../../utils/formatCurrency";
+import { fetchWalletStats } from "@/reduxStore/slices/WalletSlice";
+import { fetchUser } from "@/reduxStore/slices/UserSlice";
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 import ActionNavbar from "../Home/ActionBar";
 import Financials from "./Financials";
-import CurrencyConverter from "../../utils/CurrencyConverter";
+import CurrencyConverter from "@/app/utils/CurrencyConverter";
 
 const BalanceInfo = () => {
   const dispatch = useDispatch();
@@ -187,7 +188,6 @@ const BalanceInfo = () => {
               </Col>
             </Row>
             <Row>
-              {" "}
               <Financials />
             </Row>
           </Card.Body>

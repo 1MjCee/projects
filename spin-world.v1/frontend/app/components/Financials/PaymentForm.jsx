@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Alert, Container, Row, Col } from "react-bootstrap";
@@ -10,12 +12,12 @@ import {
   fetchAvailableCurrencies,
   fetchMinimumPaymentAmount,
   fetchEstimatedPrice,
-} from "../../store/slices/PaymentOrderSlice";
-import { useNavigate } from "react-router-dom";
+} from "@/reduxStore/slices/PaymentOrderSlice";
+import { useRouter } from "next/navigation";
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const router = useRouter;
 
   const {
     predefinedAmounts,
@@ -29,11 +31,7 @@ const PaymentForm = () => {
     cryptoCurrencies,
     minAmount,
     fiatEquivalent,
-    minloading,
-    minerror,
     estimatedPrice,
-    esloading,
-    eserror,
   } = useSelector((state) => state.payment);
 
   const [showError, setShowError] = useState(false);

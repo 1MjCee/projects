@@ -7,7 +7,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    env_file: frontend/.env
     volumes:
       - static_volume:/app/backend/django_static
       - media_volume:/app/backend/media
@@ -15,26 +14,25 @@ services:
       - ./docker/nginx/certbot/conf:/etc/letsencrypt
       - ./docker/nginx/certbot/www:/var/www/certbot
       - /etc/letsencrypt:/etc/letsencrypt:rw
+      - ./frontend/out:/usr/share/nginx/html
+      - ./frontend/.next:/app/frontend/.next
     environment:
       - SSL_CERTIFICATE=/etc/letsencrypt/live/spin-world.site/fullchain.pem
       - SSL_CERTIFICATE_KEY=/etc/letsencrypt/live/spin-world.site/privkey.pem
     depends_on:
+      - frontend
       - backend
 
-  certbot:
+  frontend:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: ./docker/certbot/Dockerfile
-    volumes:
-      - ./docker/nginx/certbot/conf:/etc/letsencrypt
-      - ./docker/nginx/certbot/www:/var/www/certbot
-      - /etc/letsencrypt:/etc/letsencrypt:rw
-      - ./var/lib/letsencrypt:/var/lib/letsencrypt
-      - ./var/log/letsencrypt:/var/log/letsencrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-    depends_on:
-      - nginx
+      dockerfile: ./docker/frontend/Dockerfile
+    env_file: frontend/.env.production
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
 
   backend:
     restart: unless-stopped
@@ -58,6 +56,21 @@ services:
     depends_on:
       - db
       - redis
+
+  certbot:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./docker/certbot/Dockerfile
+    volumes:
+      - ./docker/nginx/certbot/conf:/etc/letsencrypt
+      - ./docker/nginx/certbot/www:/var/www/certbot
+      - /etc/letsencrypt:/etc/letsencrypt:rw
+      - ./var/lib/letsencrypt:/var/lib/letsencrypt
+      - ./var/log/letsencrypt:/var/log/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    depends_on:
+      - nginx
 
   db:
     image: postgres:latest

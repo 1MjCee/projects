@@ -1,9 +1,10 @@
+"use client";
+
 import React, { useEffect } from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import InvestButton from "./InvestButton";
-import { fetchUser } from "../../store/slices/UserSlice";
-import CurrencyConverter from "../../utils/CurrencyConverter.jsx";
+import { fetchUser } from "@/reduxStore/slices/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const InvestmentCard = ({

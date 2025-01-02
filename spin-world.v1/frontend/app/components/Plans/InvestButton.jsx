@@ -1,13 +1,15 @@
+"use client";
+
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Button, Alert } from "react-bootstrap";
-import { buyInvestment } from "../../store/slices/InvestSlice";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { buyInvestment } from "@/reduxStore/slices/InvestSlice";
+import { useRouter } from "next/navigation";
 
 const InvestButton = ({ investmentId, disabled }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize useNavigate
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [isError, setIsError] = useState(false);
@@ -36,7 +38,7 @@ const InvestButton = ({ investmentId, disabled }) => {
         "Insufficient Funds for making a Purchase. Please make a deposit and try again. Redirecting to payment page"
       ) {
         setTimeout(() => {
-          navigate("/dashboard/user/payment");
+          router.push("/dashboard/user/payment");
         }, 3000);
       }
     } finally {

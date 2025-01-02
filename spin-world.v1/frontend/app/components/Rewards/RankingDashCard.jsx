@@ -57,17 +57,14 @@ const RankingDashCard = () => {
                 <h5 className="mb-2 text-center">
                   <Row>
                     <Col xs={12}>
-                      <span>
+                      <span style={{ fontSize: "13px" }}>
                         You are a{" "}
                         <span>
                           <Link
                             href={`/dashboard/account/user/ranking`}
                             passHref
                           >
-                            <Button
-                              style={{ fontWeight: "bold" }}
-                              variant="info"
-                            >
+                            <Button style={{ fontSize: "13px" }} variant="info">
                               {userRanking[0].ranking
                                 ? userRanking[0].ranking.name
                                 : "N/A"}
@@ -76,9 +73,12 @@ const RankingDashCard = () => {
                         </span>
                       </span>
                       <span className="text-center">
-                        <span className="mb-3"> on a </span>
+                        <span style={{ fontSize: "13px" }} className="mb-3">
+                          {" "}
+                          on a{" "}
+                        </span>
                         <Link href={`/dashboard/plans`} passHref>
-                          <Button style={{ fontWeight: "bold" }} variant="info">
+                          <Button style={{ fontSize: "13px" }} variant="info">
                             {" "}
                             {plans[0].investment_plan.name}
                           </Button>

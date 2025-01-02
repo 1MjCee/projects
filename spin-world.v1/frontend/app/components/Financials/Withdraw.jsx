@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { use, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWithdrawalTerms } from "../../store/slices/WithdrawalTermsSlice";
+import { fetchWithdrawalTerms } from "@/reduxStore/slices/WithdrawalTermsSlice";
 import {
   Form,
   Alert,
@@ -9,17 +11,25 @@ import {
   Row,
   Col,
   Card,
+  Button,
 } from "react-bootstrap";
 import WithdrawalButton from "./WithdrawalButton";
-import { fetchWalletStats, selectWallet } from "../../store/slices/WalletSlice";
-import CurrencyConverter from "../../utils/CurrencyConverter";
-import { fetchUser } from "../../store/slices/UserSlice";
+import {
+  fetchWalletStats,
+  selectWallet,
+} from "@/reduxStore/slices/WalletSlice";
+import CurrencyConverter from "@/app/utils/CurrencyConverter";
+import { fetchUser } from "@/reduxStore/slices/UserSlice";
+import { fetchPaymentTypes } from "@/reduxStore/slices/PaymentTypeSlice";
+import Image from "next/image";
 
 const Withdraw = () => {
   const [amount, setAmount] = useState("");
   const dispatch = useDispatch();
   const { balance, totalEarnings, currency } = useSelector(selectWallet);
   const { userInfo } = useSelector((state) => state.user);
+  const { list } = useSelector((state) => state.paymentTypes);
+  const [selectedPaymentTypes, setSelectedPaymentTypes] = useState([]);
 
   const { loading, success } = useSelector((state) => state.withdrawal);
   const {
@@ -46,10 +56,27 @@ const Withdraw = () => {
     }
     dispatch(fetchWalletStats());
     dispatch(fetchWithdrawalTerms());
+    dispatch(fetchPaymentTypes());
     if (success) {
       setAmount("");
     }
   }, [dispatch, success]);
+
+  const userPaymentTypes = list.filter(
+    (paymentType) =>
+      !paymentType.country ||
+      paymentType.country === userInfo.country.country_code
+  );
+
+  const handleCheckboxChange = (id) => {
+    setSelectedPaymentTypes((prevSelected) => {
+      if (prevSelected.includes(id)) {
+        return prevSelected.filter((item) => item !== id);
+      } else {
+        return [...prevSelected, id];
+      }
+    });
+  };
 
   // Access user's country currency symbol
   const target_currency = userInfo?.country?.currency;
@@ -179,6 +206,45 @@ const Withdraw = () => {
             </Row>
           </Card.Body>
         </Card>
+        <hr />
+        <Row>
+          <Col>
+            <div>
+              <h5 className="text-center mt-3">Select Withdrawal Method</h5>
+              <Form className="d-flex flex-wrap" style={{ marginLeft: "30px" }}>
+                {userPaymentTypes.map((paymentType) => (
+                  <Form.Group key={paymentType.id}>
+                    <Form.Check
+                      type="checkbox"
+                      id={`paymentType-${paymentType.id}`}
+                      name="paymentTypes"
+                      value={paymentType.id}
+                      checked={selectedPaymentTypes.includes(paymentType.id)}
+                      onChange={() => handleCheckboxChange(paymentType.id)}
+                      label={
+                        <div className="d-flex flex-column align-items-center">
+                          <Image
+                            src={paymentType.payment_icon || null}
+                            alt={paymentType.type}
+                            width={30}
+                            height={24}
+                            className="mb-2"
+                            style={{ borderRadius: "8px" }}
+                          />
+                          <span style={{ fontSize: "12px" }}>
+                            {paymentType.type}
+                          </span>{" "}
+                        </div>
+                      }
+                    />
+                  </Form.Group>
+                ))}
+              </Form>
+            </div>
+          </Col>
+        </Row>
+
+        <hr />
 
         <Form className="mb-4 p-3">
           <Form.Group>

@@ -27,15 +27,7 @@ class Currency(models.Model):
     class Meta:
         db_table = 'Currencies'
         verbose_name = "Currency"  
-        verbose_name_plural = "Currencies"  
-
-
-class PaymentType(models.Model):
-    type = models.CharField(max_length=255, unique=True)
-    description = models.TextField(null=True, blank=True)
-    
-    def __str__(self):
-        return self.type
+        verbose_name_plural = "Currencies"
         
 
 class Country(models.Model):
@@ -57,6 +49,17 @@ class Country(models.Model):
         db_table = 'Countries'
         verbose_name = "Country"
         verbose_name_plural = "Countries"
+
+
+
+class PaymentType(models.Model):
+    type = models.CharField(max_length=255, unique=True)
+    country = models.CharField(max_length=5, blank=True, null=True)
+    payment_icon = models.ImageField(upload_to='uploads/payment_icons/', blank=True, null=True)
+    description = models.TextField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.type
         
 
 class UserManager(BaseUserManager):

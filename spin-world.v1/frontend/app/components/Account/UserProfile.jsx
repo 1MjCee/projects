@@ -1,15 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import {
-  Image,
-  Row,
-  Col,
-  Container,
-  Spinner,
-  Alert,
-  Card,
-} from "react-bootstrap";
+import { Image, Row, Col, Container, Spinner, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "@/reduxStore/slices/UserSlice";
 

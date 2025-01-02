@@ -59,7 +59,7 @@ CELERY_BEAT_SCHEDULE = {
     # Task to fetch exchange rates every hour
     'fetch_exchange_rates': {
         'task': 'system.tasks.fetch_exchange_rates',
-        'schedule': crontab(minute=0),
+        'schedule': crontab(minute='*/1'),
     },
 }
 
@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django.contrib.humanize',
     'django_extensions',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [

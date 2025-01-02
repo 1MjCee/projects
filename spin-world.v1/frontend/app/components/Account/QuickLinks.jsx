@@ -1,5 +1,6 @@
+"use client";
+
 import { Col, Row, Card, Container } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
 import {
   FaChevronRight,
   FaUser,
@@ -8,24 +9,24 @@ import {
 } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 import { FaRankingStar } from "react-icons/fa6";
-// import { persistor } from "../../store/store";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const QuickLinks = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleLogout = (e) => {
     e.preventDefault();
-    // persistor.flush();
-    // persistor.purge();
+
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
-    navigate("/");
+    router.push("/");
   };
 
   return (
-    <Container>
+    <Container className="mb-3">
       <Card style={{ border: "none" }} className=" my-3">
         <Card.Header
           style={{
@@ -46,7 +47,8 @@ const QuickLinks = () => {
         >
           {/* Update Profile Link */}
           <Link
-            to="/dashboard/account/user/profile-update"
+            href="/dashboard/account/user/profile"
+            passHref
             className="text-decoration-none"
           >
             <Row
@@ -65,7 +67,8 @@ const QuickLinks = () => {
 
           {/* Withdrawal Account Link */}
           <Link
-            to="/dashboard/account/user/withdrawal-details"
+            href="/dashboard/account/user/withdrawal-details"
+            passHref
             className="text-decoration-none"
           >
             <Row
@@ -83,7 +86,11 @@ const QuickLinks = () => {
           </Link>
 
           {/* Reviews Page */}
-          <Link to="/dashboard/reviews/" className="text-decoration-none">
+          <Link
+            href="/dashboard/reviews/"
+            passHref
+            className="text-decoration-none"
+          >
             <Row
               style={{ border: "none" }}
               className="align-items-center border rounded quick-link mb-2 py-1"
@@ -100,7 +107,8 @@ const QuickLinks = () => {
 
           {/* User Rankings Link */}
           <Link
-            to="/dashboard/account/user/ranking"
+            href="/dashboard/account/user/rankings"
+            passHref
             className="text-decoration-none"
           >
             <Row
@@ -119,7 +127,8 @@ const QuickLinks = () => {
 
           {/* Change Password Link */}
           <Link
-            to="/dashboard/account/user/profile/update-password"
+            href="/dashboard/account/user/password-update"
+            passHref
             className="text-decoration-none"
           >
             <Row
@@ -137,7 +146,12 @@ const QuickLinks = () => {
           </Link>
 
           {/* Logout Link */}
-          <Link to="/" onClick={handleLogout} className="text-decoration-none">
+          <Link
+            href="/"
+            onClick={handleLogout}
+            passHref
+            className="text-decoration-none"
+          >
             <Row className="align-items-center border rounded quick-link mb-2 py-1 hover-bg-light">
               <Col xs={2} sm={1} className="text-center">
                 <IoIosLogOut color="#DA9100" size={20} />

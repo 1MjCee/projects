@@ -1,10 +1,12 @@
+"use client";
+
 import { useEffect } from "react";
 import { Card, Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchReferralStats } from "../../store/slices/ReferralsSlice";
-import { fetchWalletStats } from "../../store/slices/WalletSlice";
-import { fetchUser } from "../../store/slices/UserSlice";
-import CurrencyConverter from "../../utils/CurrencyConverter.jsx";
+import { fetchReferralStats } from "@/reduxStore/slices/ReferralsSlice";
+import { fetchWalletStats } from "@/reduxStore/slices/WalletSlice.js";
+import { fetchUser } from "@/reduxStore/slices/UserSlice";
+import CurrencyConverter from "@/app/utils/CurrencyConverter";
 
 const Stats = () => {
   const dispatch = useDispatch();

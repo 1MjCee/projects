@@ -26,7 +26,7 @@ const EarningsCard = ({ investment }) => {
             <Col>
               <Row>
                 <Col xs={12}>
-                  <div style={{ color: "#FF8C00" }}>
+                  <span style={{ color: "#FF8C00" }}>
                     <CurrencyConverter
                       amountInBaseCurrency={
                         investment.investment_plan.daily_income
@@ -37,7 +37,7 @@ const EarningsCard = ({ investment }) => {
                       investment.investment_plan.daily_income,
                       investment.investment_plan.currency.code
                     )}
-                  </div>
+                  </span>
                 </Col>
                 <Col>
                   <h6>Daily Income</h6>
@@ -59,38 +59,11 @@ const EarningsCard = ({ investment }) => {
                 </Col>
               </Row>
             </Col>
-            {/* <Col>
-              <Row>
-                <Col xs={12}>
-                  <div style={{ color: "#FF8C00" }}>
-                    {formatCurrency(
-                      investment.investment_plan.price,
-                      investment.investment_plan.currency.code
-                    )}
-                  </div>
-                </Col>
-                <Col>
-                  <h6>Investment Price</h6>
-                </Col>
-              </Row>
-            </Col> */}
           </Row>
         </Card.Text>
       </Card.Body>
       <Card.Footer>
         <Row className="align-items-center">
-          {/* {investment.investment_plan.image && (
-            <Col xs="auto">
-              <img
-                src={
-                  investment.investment_plan.image ||
-                  "/assets/images/placeholder.avif"
-                }
-                alt={investment.investment_plan.name}
-                style={{ width: "100px", height: "auto" }}
-              />
-            </Col>
-          )} */}
           <Col>
             <Row className="justify-content-between">
               <Col xs="auto">

@@ -1,15 +1,17 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserRankings,
   fetchAllRankings,
-} from "../../store/slices/RankingSlice";
+} from "@/reduxStore/slices/RankingSlice";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import SubHeader from "../SubHeader";
 import { GiLevelFour } from "react-icons/gi";
-import { fetchUser } from "../../store/slices/UserSlice";
-import CurrencyConverter from "../../utils/CurrencyConverter";
-import { fetchWalletStats } from "../../store/slices/WalletSlice";
+import { fetchUser } from "@/reduxStore/slices/UserSlice";
+import CurrencyConverter from "@/app/utils/CurrencyConverter";
+import { fetchWalletStats } from "@/reduxStore/slices/WalletSlice";
 
 const UserRanking = () => {
   const dispatch = useDispatch();

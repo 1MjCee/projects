@@ -67,7 +67,7 @@ const LandingRoulette = () => {
   const handleSpinCompletion = () => {
     setShowMessage(true);
     setTimeout(() => {
-      router.push("/login");
+      router.push("/auth/login");
     }, 3000);
   };
 

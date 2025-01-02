@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 import { Container, Col, Row, Alert, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,14 +9,13 @@ import {
   fetchInvestments,
   selectInvestments,
   selectLoading,
-} from "../../store/slices/InvestmentsSlice";
+} from "@/reduxStore/slices/InvestmentsSlice";
 import {
   fetchUserInvestments,
   selectUserInvestmentPlans,
   selectUserInvestmentsLoading,
   selectUserInvestmentsError,
-} from "../../store/slices/UserInvestmentSlice";
-import CurrencyFormatter from "../../utils/formatCurrency";
+} from "@/reduxStore/slices/UserInvestmentSlice";
 
 const Investments = () => {
   const dispatch = useDispatch();

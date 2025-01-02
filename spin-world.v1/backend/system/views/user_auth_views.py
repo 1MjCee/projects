@@ -192,11 +192,7 @@ class AuthViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             user = serializer.validated_data
             tokens = JWTTokenSerializer.get_tokens_for_user(user)
-            # Set the refresh token in an HTTP-only cookie (for security)
             response = Response(tokens, status=status.HTTP_200_OK)
-            response.set_cookie(
-                'refresh_token', tokens['refresh'], httponly=True, secure=True, samesite='Lax'
-            )
             return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

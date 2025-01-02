@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { FaWallet, FaArrowCircleDown } from "react-icons/fa";
+import Link from "next/link";
 
 const Financials = () => {
   return (
@@ -9,16 +10,24 @@ const Financials = () => {
         <Card.Body>
           <Row className="text-center">
             <Col>
-              <a href="user/payment" className="text-decoration-none">
+              <Link
+                href="/dashboard/account/user/financials/deposits"
+                passHref
+                className="text-decoration-none"
+              >
                 <FaWallet size={25} color="#DA9100" className="mb-2" />
                 <span className="d-block text-light">Deposit</span>
-              </a>
+              </Link>
             </Col>
             <Col>
-              <a href="user/withdraw" className="text-decoration-none">
+              <Link
+                href="/dashboard/account/user/financials/withdrawals"
+                passHref
+                className="text-decoration-none"
+              >
                 <FaArrowCircleDown size={25} color="#DA9100" className="mb-2" />
                 <span className="d-block text-light">Withdraw</span>
-              </a>
+              </Link>
             </Col>
           </Row>
         </Card.Body>

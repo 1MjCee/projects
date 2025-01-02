@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Button, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +9,7 @@ import {
   selectWithdrawalRequestError,
   selectWithdrawalRequestSuccess,
   resetMessages,
-} from "../../store/slices/WithdrawalRequestSlice";
+} from "@/reduxStore/slices/WithdrawalRequestSlice";
 
 const WithdrawalButton = ({ amount }) => {
   const dispatch = useDispatch();
