@@ -16,17 +16,12 @@ class PaymentMethodAdmin(ModelAdmin):
     
 class PaymentTypeAdmin(ModelAdmin):
     list_display = ('id', 'type', 'country', 'description')
-    search_fields = ('type',)
+    search_fields = ('type', 'country',)
     fieldsets = (
         (None, {
-            'fields': ('type', 'country', 'payment_icon', 'description')
-        }),
-        ('Additional Information', {
-            'fields': ('description',),
-            'classes': ('collapse',) 
+            'fields': ('type', 'country', 'icon', 'description')
         }),
     )
-    autocomplete_fields = ['country']
 
     list_per_page = 10
 

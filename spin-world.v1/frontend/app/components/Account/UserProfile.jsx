@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Image, Row, Col, Container, Spinner, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "@/reduxStore/slices/UserSlice";
+import CenteredSpinner from "../CenteredSpinner";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const UserProfile = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <Spinner animation="border" />;
+    return <CenteredSpinner />;
   }
 
   return (
@@ -37,7 +38,7 @@ const UserProfile = () => {
               />
             </a>
           </Col>
-          <Col className="">
+          <Col>
             <Row>
               <Col>
                 <p className="mb-0 text-sm text-center">
@@ -57,10 +58,12 @@ const UserProfile = () => {
                   )}
                 </p>
               </Col>
+            </Row>
+            <Row>
               <Col xs={12}>
                 <p>
                   {userInfo?.email && (
-                    <p className="font-weight-bold  mb-1 text-center">
+                    <p className="font-weight-bold text-center">
                       <span style={{ color: "#FF8C00" }}>
                         {userInfo?.email}
                       </span>
@@ -68,42 +71,12 @@ const UserProfile = () => {
                   )}
                 </p>
               </Col>
-            </Row>
-
-            <hr />
-
-            <Row>
-              <Col>
-                {userInfo?.date_joined && (
-                  <p className="font-weight-bold mb-1 text-center">
-                    Date Joined:{" "}
-                    <span style={{ color: "#FF8C00" }}>
-                      {new Date(userInfo?.date_joined).toLocaleDateString(
-                        "en-US",
-                        {
-                          weekday: "long", // "Monday"
-                          year: "numeric", // "2024"
-                          month: "long", // "December"
-                          day: "numeric", // "6"
-                        }
-                      )}
-                    </span>
-                  </p>
-                )}
-
+              <Col className="mb-0" xs={12}>
                 {userInfo?.country && (
-                  <p className="font-weight-bold  mb-1 text-center">
+                  <p className="font-weight-bold text-center">
                     Location:{" "}
                     <span style={{ color: "#FF8C00" }}>
                       {userInfo?.country.city}, {userInfo?.country.country}
-                    </span>
-                  </p>
-                )}
-                {userInfo?.country && (
-                  <p className="font-weight-bold  mb-1 text-center">
-                    Time Zone:{" "}
-                    <span style={{ color: "#FF8C00" }}>
-                      {userInfo?.country.timezone}
                     </span>
                   </p>
                 )}

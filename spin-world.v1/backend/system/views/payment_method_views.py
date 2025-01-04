@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from ..models import PaymentMethod, PaymentType, PaymentOrder, Currency
+from ..models import PaymentMethod, PaymentType, PaymentOrder, Currency, PaymentConfigurations
 from ..serializers import PaymentMethodSerializer, PaymentTypeSerializer
 import requests
 from rest_framework import viewsets, status
@@ -13,6 +13,22 @@ import hashlib
 from rest_framework.exceptions import NotFound
 import requests
 from rest_framework.decorators import action
+
+""" Fetching Payment configurations from the database """
+def get_api_key():
+    payment_config = PaymentConfigurations.objects.first()  
+    if payment_config:
+        return payment_config.api_key
+    else:
+        raise ValueError("API Key not found in the database.")
+
+"""Fetching IPN secret from the database"""
+def get_ipn_secret():
+    payment_config = PaymentConfigurations.objects.first()  
+    if payment_config:
+        return payment_config.ipn_secret.encode()  
+    else:
+        raise ValueError("IPN Secret not found in the database.")
 
 
 class PaymentMethodViewSet(viewsets.ModelViewSet):
@@ -69,8 +85,10 @@ class PaymentOrderViewSet(viewsets.ModelViewSet):
 
         # Step 2: Create the Payment by Invoice
         api_url = "https://api.nowpayments.io/v1/invoice-payment"
+        ipn_secret = get_ipn_secret()
+        print(f"IPN Secret:", ipn_secret)
         headers = {
-            "x-api-key": settings.NOWPAYMENTS_API_KEY,
+            "x-api-key": ipn_secret,
             "Content-Type": "application/json",
         }
 
@@ -126,9 +144,11 @@ class PaymentOrderViewSet(viewsets.ModelViewSet):
         Automatically creates an invoice on NOWPayments and returns the invoice URL and invoice ID.
         """
         api_url = "https://api.nowpayments.io/v1/invoice"
+        api_key = get_api_key()
+        print(f"API Key:", api_key)
         
         headers = {
-            "x-api-key": settings.NOWPAYMENTS_API_KEY,
+            "x-api-key": api_key,
             "Content-Type": "application/json",
         }
 
@@ -137,7 +157,7 @@ class PaymentOrderViewSet(viewsets.ModelViewSet):
             "price_amount": price_amount,
             "price_currency": price_currency,
             "pay_currency": pay_currency,
-            "ipn_callback_url": f"http://127.0.0.1:8000/api/payment/callback/{order_id}/", 
+            "ipn_callback_url": f"https://spin-world.site/api/payment/callback/{order_id}/", 
         }
 
         # Send POST request to NOWPayments API
@@ -203,9 +223,12 @@ def verify_ipn_signature(request):
     sorted_data = sorted(data.items())
     data_string = json.dumps(sorted_data, separators=(',', ':'))
 
+    # Fetch the IPN secret from the database
+    ipn_secret = get_ipn_secret()
+
     # Calculate the expected signature using the shared secret
     expected_signature = hmac.new(
-        settings.NOWPAYMENTS_IPN_SECRET.encode(), 
+        ipn_secret, 
         data_string.encode(), 
         hashlib.sha512
     ).hexdigest()

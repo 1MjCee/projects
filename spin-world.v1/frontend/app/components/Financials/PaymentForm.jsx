@@ -7,17 +7,18 @@ import {
   createPaymentOrder,
   setAmount,
   setCryptocurrency,
-  setCurrency,
   resetPaymentState,
   fetchAvailableCurrencies,
   fetchMinimumPaymentAmount,
   fetchEstimatedPrice,
 } from "@/reduxStore/slices/PaymentOrderSlice";
 import { useRouter } from "next/navigation";
+import PaymentGuide from "./PaymentGuide";
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
   const router = useRouter;
+  const [showGuide, setShowGuide] = useState(false);
 
   const {
     predefinedAmounts,
@@ -126,9 +127,19 @@ const PaymentForm = () => {
     }
   }, [selectedAmount, selectedCryptocurrency, dispatch]);
 
+  const toggleGuide = () => {
+    setShowGuide(!showGuide);
+  };
+
   return (
-    <Container className="mt-5 px-0">
-      <h2 className="text-light text-center">Payment Form</h2>
+    <Container fluid className="mt-5 px-0">
+      <header>
+        <h5 className="text-light text-center">Payment Form</h5>
+        <p className="text-center text-light">
+          -- Follow the instructions on the payment guidelines at the end of
+          this form --
+        </p>
+      </header>
       <Form
         style={{
           backgroundColor: "#03002e",
@@ -252,6 +263,23 @@ const PaymentForm = () => {
           </Alert>
         </div>
       )}
+      <hr />
+      <Row className="mt-5">
+        <header>
+          <h5 className="text-center">Payment Guide</h5>
+          <p className="text-center">
+            -- Are you unsure how to proceed? Please the payment guide below --
+          </p>
+        </header>
+        <Button
+          className="text-decoration-none"
+          variant="link"
+          onClick={toggleGuide}
+        >
+          {showGuide ? "Hide Payment Guide" : "Show Payment Guide"}
+        </Button>
+        {showGuide && <PaymentGuide />}
+      </Row>
     </Container>
   );
 };

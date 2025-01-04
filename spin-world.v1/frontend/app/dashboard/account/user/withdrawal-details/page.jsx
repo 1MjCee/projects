@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 const WithdrawalDetails = () => {
   return (
-    <Container fluid className="px  -0">
+    <Container fluid className="px-0" style={{ marginBottom: "100px" }}>
       <WithdrawalAccount />
     </Container>
   );

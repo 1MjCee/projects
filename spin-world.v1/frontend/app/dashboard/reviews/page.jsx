@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Row, Col, Pagination, Spinner, Alert } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Pagination,
+  Spinner,
+  Alert,
+  Container,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import ReviewCard from "@/app/components/Reviews/ReviewCard";
 import { fetchReviews } from "@/reduxStore/slices/reviewSlice";
@@ -47,8 +54,20 @@ const Reviews = () => {
   };
 
   return (
-    <div className="container mt-4 mb-5">
+    <Container fluid className="px-0 mt-4" style={{ marginBottom: "100px" }}>
       {/* Review Cards */}
+      <header className="mt-5">
+        <h5
+          style={{ color: "#DA9100", fontWeight: "bold" }}
+          className="text-center"
+        >
+          All Reviews
+        </h5>
+        <p className="text-center">
+          -- You will find all your customer reviews in this page --
+        </p>
+      </header>
+      <hr />
       {!loading && !error && reviews.length === 0 && (
         <div className="d-flex justify-content-center mt-3">
           <Alert variant="info">No reviews available.</Alert>
@@ -66,7 +85,7 @@ const Reviews = () => {
       )}
 
       {/* Pagination Controls */}
-      <div className="d-flex justify-content-center mt-3">
+      <div className="d-flex justify-content-center mt-3 mb-5">
         <Pagination>
           <Pagination.Prev onClick={() => handleFastNavigation("prev")} />
           <Pagination.First onClick={() => setCurrentPage(1)} />
@@ -83,7 +102,7 @@ const Reviews = () => {
           <Pagination.Next onClick={() => handleFastNavigation("next")} />
         </Pagination>
       </div>
-    </div>
+    </Container>
   );
 };
 

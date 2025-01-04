@@ -24,9 +24,9 @@ const Stats = () => {
   const target_currency = userInfo?.country?.currency;
 
   return (
-    <Container fluid className="mt-4">
+    <Container fluid className="mt-4 px-0">
       <Card
-        className="mt-4 mb-2"
+        className="mt-4 mb-2 px-0"
         style={{ height: "80px", backgroundColor: "#03002e" }}
       >
         <Card.Body className="d-flex justify-content-center align-items-center">
@@ -41,13 +41,7 @@ const Stats = () => {
               <h5 className="mb-1" style={{ color: "#FFB000" }}>
                 {totalReferrals}
               </h5>
-              <hr
-                style={{
-                  width: "15%",
-                  margin: "5px 0",
-                  border: "1px solid #004225",
-                }}
-              />
+
               <p style={{ fontWeight: "bold", color: "#fafafa" }}>Team Size</p>
             </Col>
             <Col
@@ -63,13 +57,7 @@ const Stats = () => {
                   targetCurrency={target_currency}
                 />
               </h5>
-              <hr
-                style={{
-                  width: "10%",
-                  margin: "0",
-                  border: "1px solid #004225",
-                }}
-              />
+
               <p style={{ fontWeight: "bold", color: "#fafafa" }}>
                 Total Earnings
               </p>

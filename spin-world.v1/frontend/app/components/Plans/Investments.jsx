@@ -16,6 +16,8 @@ import {
   selectUserInvestmentsLoading,
   selectUserInvestmentsError,
 } from "@/reduxStore/slices/UserInvestmentSlice";
+import CurrencyConverter from "@/app/utils/CurrencyConverter";
+import { fetchUser } from "@/reduxStore/slices/UserSlice";
 
 const Investments = () => {
   const dispatch = useDispatch();
@@ -28,10 +30,12 @@ const Investments = () => {
   const plans = useSelector(selectUserInvestmentPlans);
   const user_loading = useSelector(selectUserInvestmentsLoading);
   const user_error = useSelector(selectUserInvestmentsError);
+  const userInfo = useSelector((state) => state.user.userInfo);
 
   useEffect(() => {
     dispatch(fetchInvestments());
     dispatch(fetchUserInvestments());
+    dispatch(fetchUser());
   }, [dispatch]);
 
   // If no available subscription plans
@@ -47,21 +51,12 @@ const Investments = () => {
     );
   }
 
-  // If user plans are loading, show a loading spinner or similar
-  if (user_loading) {
-    return (
-      <Container fluid className="p-0">
-        <Row className="justify-content-center mt-5">
-          <Spinner animation="border" variant="primary" />
-        </Row>
-      </Container>
-    );
-  }
+  const target_currency = userInfo?.country?.currency;
 
   return (
     <Container fluid className="p-0 mt-5">
       {plans.length > 0 ? (
-        <Row className="mb-4">
+        <Row style={{ margin: "auto" }} className="mb-4">
           <Col>
             <div
               className="p-4 text-light"
@@ -72,44 +67,50 @@ const Investments = () => {
               }}
             >
               <h4 className="mb-4 text-center">
-                <span className="mb-3"> Dear user, you are on a </span> <br />
-                <div
-                  className="text-center"
-                  style={{
-                    backgroundColor: "#FF8C00",
-                    color: "#FFFFFF",
-                    padding: "5px 10px",
-                    borderRadius: "4px",
-                  }}
-                >
-                  {plans[0].investment_plan.name}
+                <div>
+                  Current Plan:
+                  <div
+                    className="text-center"
+                    style={{
+                      backgroundColor: "#FF8C00",
+                      color: "#FFFFFF",
+                      padding: "5px 10px",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    {plans[0].investment_plan.name}
+                  </div>
                 </div>
               </h4>
               <hr />
               <h5 className="text-center">Your Benefits</h5>
               <hr />
               <p>
-                {"-> "}Your plan lasts for:{" "}
+                Duration:{" "}
                 <span style={{ color: "#DA9100" }}>
                   {toWords(plans[0].investment_plan.duration_in_months)} (
                   {plans[0].investment_plan.duration_in_months}) months
                 </span>
               </p>
               <p>
-                {"-> "}For every you prize win, you get{" "}
-                <span style={{ color: "#DA9100" }}>
-                  {toWords(plans[0].investment_plan.prize_multiplier)} (
-                  {plans[0].investment_plan.prize_multiplier}){" "}
-                </span>
-                times the price.
-              </p>
-              <p>
-                {"-> "}You can withdraw up to:{" "}
-                <span style={{ color: "#DA9100" }}>
+                Daily Withdrawal Limit:{" "}
+                <span>
                   {" "}
-                  {plans[0].investment_plan.currency.symbol}{" "}
-                  {plans[0].investment_plan.daily_withdraw_limit} (
-                  {toWords(plans[0].investment_plan.daily_withdraw_limit)})
+                  {plans[0].investment_plan.currency.currency_code}
+                  <span style={{ color: "#DA9100" }}>
+                    {" "}
+                    {plans[0].investment_plan.daily_withdraw_limit}
+                  </span>
+                </span>{" "}
+                ||{" "}
+                <span>
+                  {" "}
+                  <CurrencyConverter
+                    amountInBaseCurrency={
+                      plans[0].investment_plan.daily_withdraw_limit
+                    }
+                    targetCurrency={target_currency}
+                  />
                 </span>
               </p>
             </div>

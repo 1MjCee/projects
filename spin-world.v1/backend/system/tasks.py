@@ -47,7 +47,7 @@ def check_user_rankings():
         for ranking_user in users_with_rankings:
                 RankingHelper.update_user_ranking(ranking_user.user)
 
-
+@shared_task
 def reset_spin_count():
     """Task to reset the spin count for all users at midnight."""
     # Iterate through all Spinner instances and reset the spin count

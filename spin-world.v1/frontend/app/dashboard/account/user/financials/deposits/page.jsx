@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 const Deposits = () => {
   return (
-    <Container>
+    <Container fluid className="px-0" style={{ marginBottom: "100px" }}>
       <PaymentForm />
     </Container>
   );

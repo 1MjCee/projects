@@ -21,8 +21,11 @@ const PromotionDetails = () => {
   }
 
   return (
-    <Container fluid className="mt-4">
-      <Card style={{ backgroundColor: "#03002e", color: "#fafafa" }}>
+    <Container fluid className="mt-4 px-0">
+      <Card
+        className="mx-0"
+        style={{ backgroundColor: "#03002e", color: "#fafafa" }}
+      >
         <Card.Body>
           <Card.Title
             as="h5"

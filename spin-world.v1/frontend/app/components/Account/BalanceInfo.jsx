@@ -67,7 +67,11 @@ const BalanceInfo = () => {
                           <span
                             style={{ fontSize: "12px", fontWeight: "bold" }}
                           >
-                            {currency.currency_code} {deposit}
+                            {currency.currency_code} {deposit} ||{" "}
+                            <CurrencyConverter
+                              amountInBaseCurrency={deposit}
+                              targetCurrency={target_currency}
+                            />
                           </span>
                         </h5>
                         <span
@@ -165,6 +169,7 @@ const BalanceInfo = () => {
                           <span
                             style={{ fontSize: "12px", fontWeight: "bold" }}
                           >
+                            {currency.currency_code} {balance} ||{" "}
                             <CurrencyConverter
                               amountInBaseCurrency={balance}
                               targetCurrency={target_currency}

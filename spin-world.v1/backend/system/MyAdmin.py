@@ -13,13 +13,14 @@ from .CustomAdmins import (
     GuideAdmin, RankingUserAdmin, RankingAdmin, WithdrawalDetailAdmin,
     WithdrawalTermsAdmin, PaymentMethodAdmin, CurrencyAdmin, NoticeAdmin,
     CountryAdmin, PaymentTypeAdmin, PaymentProofAdmin, NoticeSectionAdmin,
-    SpinnersAdmin, PaymentOrderAdmin, UserInvestmentPlanAdmin, ExchangeRateAdmin, ReviewAdmin
+    SpinnersAdmin, PaymentOrderAdmin, UserInvestmentPlanAdmin, ExchangeRateAdmin, ReviewAdmin,
+    PaymentConfigurationsAdmin
 )
 from .models import (
     User, PromoCode, InvestmentPlan, UserInvestmentPlan, Wallet, Transaction,
     Referral, ReferralLevel, Ranking, RankingUser, WithdrawalDetail, PaymentType,
     WithdrawalTerm, PaymentMethod, Guide, Currency, Notice, Country,
-    PaymentProof, NoticeSection, Spinner, PaymentOrder, ExchangeRate, Review
+    PaymentProof, NoticeSection, Spinner, PaymentOrder, ExchangeRate, Review, PaymentConfigurations
 )
 
 class AdminDashboard(UnfoldAdminSite):
@@ -39,7 +40,7 @@ class AdminDashboard(UnfoldAdminSite):
         ordering = [
             'Transaction', 'PaymentOrder', 'User', 'InvestmentPlan', 'UserInvestmentPlan', 'Country', 'PaymentMethod', 'PaymentType',
             'Withdrawal', 'Wallet', 'Currency', 'PaymentProof', 'Referral', 'ReferralLevel', 'Ranking', 'RankingUser',
-            'WithdrawalTerm', 'WithdrawalDetail', 'PromoCode', 'Spinner',  'ExchangeRate', 'Guide', 'Notice', 'NoticeSection', 'Review'
+            'WithdrawalTerm', 'WithdrawalDetail', 'PromoCode', 'Spinner',  'ExchangeRate', 'Guide', 'Notice', 'NoticeSection', 'Review', 'PaymentConfigurations'
         ]
         
         for app in app_list:
@@ -75,3 +76,4 @@ my_custom_admin.register(PaymentOrder, PaymentOrderAdmin)
 my_custom_admin.register(InvestmentPlan, InvestmentPlanAdmin)
 my_custom_admin.register(ExchangeRate, ExchangeRateAdmin)
 my_custom_admin.register(Review, ReviewAdmin)
+my_custom_admin.register(PaymentConfigurations, PaymentConfigurationsAdmin)

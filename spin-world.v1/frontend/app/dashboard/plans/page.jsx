@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 const Plans = () => {
   return (
-    <Container>
+    <Container fluid className="px-0">
       <Investments />
     </Container>
   );

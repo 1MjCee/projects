@@ -11,6 +11,9 @@ class ExchangeRateAdmin(ModelAdmin):
     list_display = ('base_currency', 'target_currency', 'rate', 'fetched_at')
     search_fields = ('target_currency',)
 
+class PaymentConfigurationsAdmin(ModelAdmin):
+    list_display = ('gateway', 'api_key', 'ipn_secret')
+
 
 class SectionInline(TabularInline):
     model = NoticeSection

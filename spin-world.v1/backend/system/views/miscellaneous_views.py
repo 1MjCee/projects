@@ -12,6 +12,7 @@ from django.db.models import Sum
 from django.utils.timezone import now
 from datetime import datetime
 from django.utils import timezone
+from .payment_method_views import get_api_key, get_ipn_secret
 
 
 
@@ -38,13 +39,14 @@ class ExchangeRateViewSet(viewsets.ModelViewSet):
     queryset = ExchangeRate.objects.all()  
     serializer_class = ExchangeRateSerializer 
 
+api_key = get_api_key()
 
 # Fetching Available Crypto Currencies
 @api_view(['GET'])
 def get_available_currencies(request):
     """Fetch available currencies from NOWPayments API"""
     url = "https://api.nowpayments.io/v1/merchant/coins"
-    headers = {"x-api-key": settings.NOWPAYMENTS_API_KEY}
+    headers = {"x-api-key": api_key}
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
@@ -73,7 +75,7 @@ def get_minimum_payment_amount(request):
     # Prepare the API request to NOWPayments
     url = f"https://api.nowpayments.io/v1/min-amount"
     headers = {
-        "x-api-key": settings.NOWPAYMENTS_API_KEY
+        "x-api-key": api_key
     }
     params = {
         "currency_from": currency_from,
@@ -116,7 +118,7 @@ def get_estimated_price(request):
     # Construct the URL to fetch the estimated price
     url = "https://api.nowpayments.io/v1/estimate"
     headers = {
-        "x-api-key": settings.NOWPAYMENTS_API_KEY
+        "x-api-key": api_key
     }
     params = {
         "amount": amount,

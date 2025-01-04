@@ -91,7 +91,7 @@ const WithdrawalAccount = () => {
     <Container
       style={{ backgroundColor: "#03002e" }}
       fluid
-      className="border rounded p-4 mt-5"
+      className="border rounded mt-5"
     >
       <SubHeader title="Withdrawal Details" />
 

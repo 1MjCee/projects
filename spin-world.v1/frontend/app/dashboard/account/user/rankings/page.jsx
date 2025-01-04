@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 const Rankings = () => {
   return (
-    <Container>
+    <Container fluid className="px-0" style={{ marginBottom: "100px" }}>
       <UserRanking />
     </Container>
   );

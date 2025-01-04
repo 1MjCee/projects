@@ -62,7 +62,7 @@ const Winners = () => {
           backgroundColor: "#03002e",
           borderRadius: "8px",
           maxWidth: "500px",
-          width: "350px",
+          width: "300px",
           height: "200px",
           overflowY: "hidden",
           color: "#fafafa",

@@ -68,7 +68,8 @@ const DigTreasure = () => {
 
   return (
     <Container
-      className="mt-5 p-4"
+      fluid
+      className="mt-5 py-4 px-0"
       style={{
         borderRadius: "10px",
         backgroundColor: "#03002e",

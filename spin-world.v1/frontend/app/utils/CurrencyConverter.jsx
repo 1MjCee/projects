@@ -50,7 +50,7 @@ const CurrencyConverter = ({ amountInBaseCurrency, targetCurrency }) => {
     <span className="mt-2">
       {targetCurrency !== null ? (
         <span>
-          <span>{targetCurrency}: </span>
+          <span>{targetCurrency} </span>
           <span style={{ color: "#DA9100", fontWeight: "bold" }}>
             {formatAmount(convertedAmount, targetCurrency)}
           </span>

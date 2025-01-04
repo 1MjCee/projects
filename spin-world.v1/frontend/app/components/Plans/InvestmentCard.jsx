@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import InvestButton from "./InvestButton";
 import { fetchUser } from "@/reduxStore/slices/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
+import CurrencyConverter from "@/app/utils/CurrencyConverter";
 
 const InvestmentCard = ({
   name,
@@ -89,14 +90,18 @@ const InvestmentCard = ({
               className="text-center text-light"
               style={{ fontSize: "12px" }}
             >
-              <span>Subscription Price: </span>
+              <span>Price: </span>
               {investmentPrice === "0.00" ||
               parseFloat(investmentPrice) === 0 ? (
                 <span>Free Forever</span>
               ) : (
                 <span>
-                  {currency.currency_code} {investmentPrice}/ {durationInMonths}{" "}
-                  months
+                  {currency.currency_code}{" "}
+                  <span style={{ color: "#DA9100" }}>{investmentPrice}</span> ||{" "}
+                  <CurrencyConverter
+                    amountInBaseCurrency={investmentPrice}
+                    targetCurrency={target_currency}
+                  />
                 </span>
               )}
             </Card.Text>
@@ -124,7 +129,11 @@ const InvestmentCard = ({
               }}
             >
               Daily Withdrawal Limit: {currency.currency_code}{" "}
-              {dailyWithdrawLimit}
+              {dailyWithdrawLimit} ||{" "}
+              <CurrencyConverter
+                amountInBaseCurrency={dailyWithdrawLimit}
+                targetCurrency={target_currency}
+              />
             </Card.Text>
             <Card.Text
               className="text-center text-light"

@@ -55,7 +55,7 @@ class Country(models.Model):
 class PaymentType(models.Model):
     type = models.CharField(max_length=255, unique=True)
     country = models.CharField(max_length=5, blank=True, null=True)
-    payment_icon = models.ImageField(upload_to='uploads/payment_icons/', blank=True, null=True)
+    icon = models.ImageField(upload_to='uploads/payment_icons/', blank=True, null=True)
     description = models.TextField(null=True, blank=True)
     
     def __str__(self):
@@ -624,4 +624,10 @@ class Review(models.Model):
     rating = models.PositiveIntegerField(choices=[(1, '1 Star'), (2, '2 Stars'), (3, '3 Stars'), (4, '4 Stars'), (5, '5 Stars')], default=5)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class PaymentConfigurations(models.Model):
+    gateway = models.CharField(max_length=255, null=True, blank=True)
+    api_key = models.CharField(max_length=255)
+    ipn_secret = models.CharField(max_length=255)
             

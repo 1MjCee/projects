@@ -3,7 +3,9 @@ import api from "@/app/utils/api";
 
 // Define initial state
 const initialState = {
-  predefinedAmounts: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+  predefinedAmounts: [
+    50, 100, 150, 200, 250, 300, 350, 400, 500, 600, 800, 1000,
+  ],
   selectedAmount: 100,
   selectedCryptocurrency: "BTC",
   selectedCurrency: "USD",

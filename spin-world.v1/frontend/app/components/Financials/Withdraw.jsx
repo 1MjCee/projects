@@ -82,14 +82,14 @@ const Withdraw = () => {
   const target_currency = userInfo?.country?.currency;
 
   return (
-    <Container fluid>
+    <Container fluid className="px-0">
       <div
         style={{
           backgroundColor: "#03002e",
           borderRadius: "8px",
           border: "1px solid #DA9100",
         }}
-        className="mt-4 p-3 text-light"
+        className="mt-4 px-2 mx-0 text-light"
       >
         <header>
           <h4 className="text-center mt-4" style={{ color: "#DA9100" }}>
@@ -171,7 +171,7 @@ const Withdraw = () => {
           borderRadius: "8px",
           border: "1px solid #DA9100",
         }}
-        className="mt-5 p-3"
+        className="mt-3 px-2"
       >
         <header>
           <h4 className="text-center mt-4" style={{ color: "#DA9100" }}>
@@ -182,25 +182,22 @@ const Withdraw = () => {
           </p>
         </header>
 
-        <Card className="mx-3 text-center bg-info">
+        <Card className=" text-center bg-info">
           <Card.Body>
             <Row>
               <Col xs={12}>
                 <Card.Text>
                   <span className="text-center">
                     Withdrawable Balance <br />
-                    {formatCurrency(totalEarnings, currency.currency_code)}
+                    {formatCurrency(
+                      totalEarnings,
+                      currency.currency_code
+                    )} ||{" "}
+                    <CurrencyConverter
+                      amountInBaseCurrency={totalEarnings}
+                      targetCurrency={target_currency}
+                    />
                   </span>
-                </Card.Text>
-              </Col>
-              <hr />
-              <Col>
-                <Card.Text>
-                  Converts to:{" "}
-                  <CurrencyConverter
-                    amountInBaseCurrency={totalEarnings}
-                    targetCurrency={target_currency}
-                  />
                 </Card.Text>
               </Col>
             </Row>
@@ -209,10 +206,18 @@ const Withdraw = () => {
         <hr />
         <Row>
           <Col>
-            <div>
-              <h5 className="text-center mt-3">Select Withdrawal Method</h5>
-              <Form className="d-flex flex-wrap" style={{ marginLeft: "30px" }}>
-                {userPaymentTypes.map((paymentType) => (
+            <h7 style={{ color: "#fafafa" }}> Select Payment Method</h7>
+            <Form className="d-flex flex-wrap">
+              {userPaymentTypes.map((paymentType) => (
+                <div
+                  className="bg-light"
+                  style={{
+                    border: "1px solid #DA9100",
+                    borderRadius: "8px",
+                    margin: "5px",
+                    padding: "5px",
+                  }}
+                >
                   <Form.Group key={paymentType.id}>
                     <Form.Check
                       type="checkbox"
@@ -224,29 +229,31 @@ const Withdraw = () => {
                       label={
                         <div className="d-flex flex-column align-items-center">
                           <Image
-                            src={paymentType.payment_icon || null}
+                            src={
+                              paymentType.icon || "/assets/images/default.png"
+                            }
                             alt={paymentType.type}
                             width={30}
                             height={24}
                             className="mb-2"
-                            style={{ borderRadius: "8px" }}
+                            style={{ borderRadius: "15px" }}
                           />
-                          <span style={{ fontSize: "12px" }}>
+                          <span style={{ fontSize: "10px", color: "#03002e" }}>
                             {paymentType.type}
                           </span>{" "}
                         </div>
                       }
                     />
                   </Form.Group>
-                ))}
-              </Form>
-            </div>
+                </div>
+              ))}
+            </Form>
           </Col>
         </Row>
 
         <hr />
 
-        <Form className="mb-4 p-3">
+        <Form className="mb-4">
           <Form.Group>
             <Form.Label style={{ color: "#fafafa" }}>
               Amount to Withdraw

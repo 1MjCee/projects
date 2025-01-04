@@ -7,4 +7,4 @@ from .ReferralsAdmin import ReferralAdmin, ReferralLevelAdmin
 from .RankingsAdmin import RankingAdmin, RankingUserAdmin
 from .FinancialsAdmin import WithdrawalDetailAdmin, WithdrawalTermsAdmin, CurrencyAdmin, PaymentProofAdmin
 from .PaymentMethodAdmin import PaymentMethodAdmin, PaymentTypeAdmin, PaymentOrderAdmin
-from .MiscellaneousAdmins import NoticeAdmin, NoticeSectionAdmin, ExchangeRateAdmin, ReviewAdmin
+from .MiscellaneousAdmins import NoticeAdmin, NoticeSectionAdmin, ExchangeRateAdmin, ReviewAdmin, PaymentConfigurationsAdmin

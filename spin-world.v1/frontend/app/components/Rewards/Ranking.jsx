@@ -33,7 +33,7 @@ const UserRanking = () => {
   const target_currency = userInfo?.country?.currency;
 
   return (
-    <Container className="user-rankings mt-3">
+    <Container className="user-rankings px-0 mt-3">
       <SubHeader title="User Ranking" />
       <p className="text-center text-light">
         Your level based on the ranking scheme
@@ -55,7 +55,7 @@ const UserRanking = () => {
         >
           <Card
             style={{ backgroundColor: "#03002e", borderRadius: "15px" }}
-            className="p-3 text-light w-100"
+            className="py-3 px-0 text-light w-100"
           >
             {userRanking && userRanking.length > 0 ? (
               <div>
@@ -87,7 +87,6 @@ const UserRanking = () => {
             )}
           </Card>
         </div>
-        <hr />
       </Row>
       <hr style={{ color: "#fafafa" }} />
       <h5 className="text-center text-light mt-3">Available Levels</h5>
@@ -109,23 +108,14 @@ const UserRanking = () => {
             return (
               (ranking.minimum_referrals >= 0 ||
                 ranking.minimum_spending >= 0) && (
-                <Col
-                  xs={12}
-                  md={4}
-                  key={ranking.ranking}
-                  // className={`step text-center ${
-                  //   index < userRanking.ranking ? "completed" : ""
-                  // } ${
-                  //   userRanking.ranking === ranking.ranking ? "current" : ""
-                  // }`}
-                >
+                <Col xs={12} md={4} key={ranking.ranking}>
                   <Card
                     style={{
                       backgroundColor: "#03002e",
                       color: "#fafafa",
                       borderRadius: "15px",
                     }}
-                    className="p-3 m-2"
+                    className="p-3"
                   >
                     <Row className="align-items-center">
                       <Col xs={12} className="mb-2">

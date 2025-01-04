@@ -70,7 +70,7 @@ const UserRegister = () => {
 
       resetForm();
       setSuccessMessage("Registration Successful!");
-      router.push("/login");
+      router.push("/auth/login");
     } catch (error) {
       let errorMessage = "Registration failed. Please try again.";
 
@@ -118,12 +118,16 @@ const UserRegister = () => {
   };
 
   return (
-    <Container style={{ backgroundColor: "#010048" }} fluid className="mt-5">
+    <Container
+      style={{ backgroundColor: "#010048" }}
+      fluid
+      className="mt-5 px-0"
+    >
       <Row style={{ margin: "300px auto" }} className="justify-content-center">
         <Col sm={12} md={6}>
           <Form
             onSubmit={handleSubmit}
-            className="p-4"
+            className="p-4 mx-0"
             style={{ backgroundColor: "#03002e", borderRadius: "8px" }}
           >
             <h2 className="mb-4 text-center" style={{ color: "#DA9100" }}>

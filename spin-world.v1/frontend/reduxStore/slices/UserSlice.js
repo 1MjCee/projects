@@ -15,8 +15,8 @@ export const updateUser = createAsyncThunk(
 
     // Append user data
     data.append("username", userData.username);
-    if (userData.email) {
-      data.append("email", userData.email);
+    if (userData.phone_number) {
+      data.append("phone_number", userData.phone_number);
     }
 
     // If an avatar file is provided, append it to the FormData

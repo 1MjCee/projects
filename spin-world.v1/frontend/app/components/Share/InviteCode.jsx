@@ -36,7 +36,7 @@ const InviteCode = () => {
   };
 
   return (
-    <Container fluid className="mt-4">
+    <Container fluid className=" px-0">
       <Card
         style={{ backgroundColor: "#03002e", color: "#fafafa" }}
         className="mt-2 mb-2"

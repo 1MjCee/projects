@@ -29,7 +29,7 @@ GEOIP_LICENSE_KEY = os.environ.get("GEOIP_LICENSE_KEY")
 IP_INFO_API_KEY = os.environ.get("IP_INFO")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", '162.246.21.20', 'spin-world.site']
 
@@ -49,17 +49,17 @@ CELERY_BEAT_SCHEDULE = {
     # Task to check investment expiration every 5 minutes
     'check_investment_expiration': {
         'task': 'system.tasks.check_investment_expiration',
-        'schedule': crontab(minute='*/5'),  # Run every 5 minutes
+        'schedule': crontab(minute='*/5'),
     },
     # Task to reset spin count at midnight every day
     'reset_spin_count': {
         'task': 'system.tasks.reset_spin_count',
-        'schedule': crontab(minute=0, hour=0), 
+        'schedule': crontab(hour=0, minute=0), 
     },
     # Task to fetch exchange rates every hour
     'fetch_exchange_rates': {
         'task': 'system.tasks.fetch_exchange_rates',
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute=0),
     },
 }
 
@@ -139,26 +139,26 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {
-            'timeout': 20,
-        }
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'anexx_db',
-#         'USER': 'anexx',
-#         'PASSWORD': 'anexx61', 
-#         'HOST': 'db',
-#         'PORT': '5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'OPTIONS': {
+#             'timeout': 20,
+#         }
 #     }
-# } 
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'anexx_db',
+        'USER': 'anexx',
+        'PASSWORD': 'anexx61', 
+        'HOST': 'db',
+        'PORT': '5432',
+    }
+} 
 
 
 # Password validation

@@ -61,7 +61,7 @@ const ReferralList = () => {
   return (
     <div>
       <h5 style={{ color: "#DA9100" }} className="text-center mt-3">
-        Your Referral List
+        Referral List
       </h5>
 
       {referrals.length === 0 ? (

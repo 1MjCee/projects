@@ -52,7 +52,7 @@ const ChangePassword = () => {
   }, [error, success, dispatch]);
 
   return (
-    <Container fluid className="py-5 mt-5">
+    <Container fluid className="px-0 py-5 mt-5">
       <div
         style={{ backgroundColor: "#03002e" }}
         className="page-content p-4 shadow rounded"

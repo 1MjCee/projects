@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 const ProfileInfo = () => {
   return (
-    <Container>
+    <Container fluid className="px-0">
       <ProfileUpdate />
     </Container>
   );

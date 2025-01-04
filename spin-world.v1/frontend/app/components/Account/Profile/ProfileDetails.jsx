@@ -14,6 +14,7 @@ const ProfileUpdate = () => {
   // State initialization
   const [formData, setFormData] = useState({
     username: "",
+    phone_number: "",
     email: "",
     avatar: "",
     avatarFile: null,
@@ -35,6 +36,7 @@ const ProfileUpdate = () => {
     if (userInfo) {
       setFormData({
         username: userInfo?.username || "",
+        phone_number: userInfo?.phone_number || "",
         email: userInfo?.email || "",
         avatar: userInfo?.avatar || "/assets/icons/avatar.png",
         avatarFile: null,
@@ -64,17 +66,17 @@ const ProfileUpdate = () => {
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { username, email, avatarFile } = formData;
+    const { username, phone_number, avatarFile } = formData;
 
-    if (!username || !email) {
-      showAlert("Username and Email are required", "danger");
+    if (!username || !phone_number) {
+      showAlert("Username and Phone Number are required", "danger");
       return;
     }
 
     setLoading(true);
     try {
       const response = await dispatch(
-        updateUser({ userData: { username, email }, avatarFile })
+        updateUser({ userData: { username, phone_number }, avatarFile })
       );
       setLoading(false);
       if (response.meta.requestStatus === "fulfilled") {
@@ -97,8 +99,6 @@ const ProfileUpdate = () => {
   return (
     <Container fluid className="py-4 mt-5" style={{ background: "#03002e" }}>
       <div className="page-content defaultbg">
-        {/* {message && <Alert variant={messageType}>{message}</Alert>} */}
-
         {/* Form */}
         <Form onSubmit={handleSubmit} style={{ fontSize: "14px" }}>
           <Row className="mb-4">
@@ -131,6 +131,20 @@ const ProfileUpdate = () => {
           </Row>
 
           <Form.Group className="mb-3">
+            <Form.Label className="text-light">
+              Your Email - Can't be changed
+            </Form.Label>
+            <Form.Control
+              className="bg-light"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              disabled
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
             <Form.Label className="text-light">Update Username</Form.Label>
             <Form.Control
               className="bg-light"
@@ -138,18 +152,20 @@ const ProfileUpdate = () => {
               name="username"
               value={formData.username}
               onChange={handleInputChange}
+              autComplete="on"
               required
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label className="text-light">Update Email</Form.Label>
+            <Form.Label className="text-light">Update Phone Number</Form.Label>
             <Form.Control
               className="bg-light"
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="phone_number"
+              value={formData.phone_number}
               onChange={handleInputChange}
+              autoComplete="on"
               required
             />
           </Form.Group>
@@ -160,7 +176,7 @@ const ProfileUpdate = () => {
             disabled={loading || userLoading}
             className="mt-3 w-100"
           >
-            {loading ? "Saving..." : "Save"}
+            {loading ? "Updating Details..." : "Update Profile"}
           </Button>
         </Form>
       </div>
