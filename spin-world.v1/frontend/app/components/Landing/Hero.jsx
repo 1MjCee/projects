@@ -12,6 +12,11 @@ const HeroSection = () => {
   const { amountToBeWon, customersToday, totalCustomers, status } =
     useSelector(selectStats);
 
+  const totalAmount = parseFloat(amountToBeWon) + 26537;
+  const usersToday = customersToday + 123;
+  const totalUsers = totalCustomers + 17563;
+  console.log(totalAmount, usersToday, totalUsers);
+
   useEffect(() => {
     dispatch(fetchStats());
   }, [dispatch]);
@@ -33,7 +38,7 @@ const HeroSection = () => {
           <Col xs={12} className="mb-2">
             <Card className="text-center" style={cardStyle}>
               <Card.Body>
-                <h4 style={{ fontWeight: "350" }}>USD {amountToBeWon}</h4>
+                <h4 style={{ fontWeight: "350" }}>USD {totalAmount}</h4>
                 <p className="text-light lead">Prizes to be Won</p>
               </Card.Body>
             </Card>
@@ -42,7 +47,7 @@ const HeroSection = () => {
           <Col md={4} sm={12} xs={6} className="mb-2">
             <Card className="text-center" style={cardStyle}>
               <Card.Body>
-                <h4 style={{ fontWeight: "350" }}>{customersToday}</h4>
+                <h4 style={{ fontWeight: "350" }}>{usersToday}</h4>
                 <p className="lead text-light">Users Today</p>
               </Card.Body>
             </Card>
@@ -51,7 +56,7 @@ const HeroSection = () => {
           <Col md={4} sm={12} xs={6} className="mb-2">
             <Card className="text-center" style={cardStyle}>
               <Card.Body>
-                <h4 style={{ fontWeight: "350" }}>{totalCustomers}</h4>
+                <h4 style={{ fontWeight: "350" }}>{totalUsers}</h4>
                 <p className="lead text-light">Total Users</p>
               </Card.Body>
             </Card>

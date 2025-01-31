@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from ..models import PaymentMethod, PaymentType, PaymentOrder, Currency, PaymentConfigurations
+from ..models import PaymentMethod, PaymentType, PaymentOrder, Currency, PaymentConfigurations, SystemWallet
 from ..serializers import PaymentMethodSerializer, PaymentTypeSerializer
 import requests
 from rest_framework import viewsets, status
@@ -189,6 +189,16 @@ def payment_callback(request, order_id):
         payment_order = PaymentOrder.objects.get(nowpayments_order_id=order_id)
         if status == "confirmed":
             payment_order.status = "confirmed"
+            user = payment_order.user  
+            
+            # Assuming the payment order contains an amount field to update the wallet with
+            amount = payment_order.amount 
+            
+            # Update the user's wallet
+            system_wallet = SystemWallet.objects.get()
+            system_wallet.deposit(amount)
+            system_wallet.save()
+            
         elif status == "failed":
             payment_order.status = "failed"
         elif status == "expired":

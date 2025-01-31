@@ -9,6 +9,8 @@ import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 import ActionNavbar from "../Home/ActionBar";
 import Financials from "./Financials";
 import CurrencyConverter from "@/app/utils/CurrencyConverter";
+import { TfiExchangeVertical } from "react-icons/tfi";
+import { TbArrowsExchange2 } from "react-icons/tb";
 
 const BalanceInfo = () => {
   const dispatch = useDispatch();
@@ -67,7 +69,10 @@ const BalanceInfo = () => {
                           <span
                             style={{ fontSize: "12px", fontWeight: "bold" }}
                           >
-                            {currency.currency_code} {deposit} ||{" "}
+                            {currency.currency_code} {deposit}{" "}
+                            <span>
+                              <TbArrowsExchange2 size={18} />
+                            </span>{" "}
                             <CurrencyConverter
                               amountInBaseCurrency={deposit}
                               targetCurrency={target_currency}
@@ -169,7 +174,10 @@ const BalanceInfo = () => {
                           <span
                             style={{ fontSize: "12px", fontWeight: "bold" }}
                           >
-                            {currency.currency_code} {balance} ||{" "}
+                            {currency.currency_code} {balance}{" "}
+                            <span>
+                              <TbArrowsExchange2 size={18} />
+                            </span>{" "}
                             <CurrencyConverter
                               amountInBaseCurrency={balance}
                               targetCurrency={target_currency}

@@ -222,5 +222,447 @@
     "review": "Hice el retiro de 400 USD sin problemas y planeo usar el dinero para pagar algunas deudas.",
     "code": "ES",
     "rating": 4
+  },
+  {
+    "username": "john_doe_99",
+    "email": "john.doe99@gmail.com",
+    "review": "I withdrew 450 USD without any issues, and I’m planning to use the money for an upcoming vacation.",
+    "code": "US",
+    "rating": 5
+  },
+  {
+    "username": "lucy_smith",
+    "email": "lucy.smith@example.com",
+    "review": "The withdrawal of 400 USD went smoothly, and I’m considering using it for some home improvements.",
+    "code": "GB",
+    "rating": 4
+  },
+  {
+    "username": "andre_fischer",
+    "email": "andre.fischer@webmail.com",
+    "review": "I was able to withdraw 600 EUR quickly and will use it for some personal investments.",
+    "code": "DE",
+    "rating": 5
+  },
+  {
+    "username": "valentina_ramos",
+    "email": "valentina.ramos@gmail.com",
+    "review": "Retiré 450 USD fácilmente, y planeo utilizarlos para iniciar un nuevo proyecto.",
+    "code": "ES",
+    "rating": 5
+  },
+  {
+    "username": "susan_miller",
+    "email": "susan.miller@yahoo.com",
+    "review": "Withdrew 350 USD, and I intend to use it to pay off some debts.",
+    "code": "US",
+    "rating": 4
+  },
+  {
+    "username": "lucas_diaz",
+    "email": "lucas.diaz@outlook.com",
+    "review": "Ho ritirato 500 USD senza problemi, e pianifico di usarli per espandere il mio business.",
+    "code": "IT",
+    "rating": 5
+  },
+  {
+    "username": "ella_sanderson",
+    "email": "ella.sanderson@gmail.com",
+    "review": "The withdrawal of 300 USD was easy and quick. I plan to use it for an investment opportunity.",
+    "code": "AU",
+    "rating": 4
+  },
+  {
+    "username": "marco_rossi",
+    "email": "marco.rossi@yahoo.com",
+    "review": "I withdrew 400 USD without any issues, and I will use the funds to pay for some home renovations.",
+    "code": "IT",
+    "rating": 4
+  },
+  {
+    "username": "paula_jones",
+    "email": "paula.jones@webmail.com",
+    "review": "I withdrew 500 USD easily, and I plan to use it to start a new business venture.",
+    "code": "CA",
+    "rating": 5
+  },
+  {
+    "username": "kimberly_williams",
+    "email": "kimberly.williams@gmail.com",
+    "review": "The withdrawal of 450 USD was quick, and I’m using the money for personal investments.",
+    "code": "US",
+    "rating": 5
+  },
+  {
+    "username": "emily_garcia",
+    "email": "emily.garcia@example.com",
+    "review": "Withdrawn 400 USD without issues, and I will use the money to pay off some bills.",
+    "code": "PH",
+    "rating": 4
+  },
+  {
+    "username": "henrik_sorensen",
+    "email": "henrik.sorensen@outlook.com",
+    "review": "Udbetalingen på 450 USD var nem, og jeg har planer om at bruge pengene til en investering.",
+    "code": "DK",
+    "rating": 4
+  },
+  {
+    "username": "andre_nelson",
+    "email": "andre.nelson@gmail.com",
+    "review": "I withdrew 350 USD smoothly, and I plan to save it for future needs.",
+    "code": "US",
+    "rating": 3
+  },
+  {
+    "username": "julia_schmidt",
+    "email": "julia.schmidt@gmail.com",
+    "review": "The withdrawal of 300 USD was quick, and I plan to invest it in my side project.",
+    "code": "DE",
+    "rating": 4
+  },
+  {
+    "username": "olga_nikolaeva",
+    "email": "olga.nikolaeva@yahoo.com",
+    "review": "Вывел 450 USD и планирую использовать средства для новых инвестиций.",
+    "code": "RU",
+    "rating": 5
+  },
+  {
+    "username": "mark_james",
+    "email": "mark.james88@gmail.com",
+    "review": "The withdrawal of 400 USD was smooth, but I expected the process to be faster.",
+    "code": "GB",
+    "rating": 3
+  },
+  {
+    "username": "michael_choi",
+    "email": "michael.choi@gmail.com",
+    "review": "The 500 USD withdrawal went smoothly, and I’m using it for business expansion.",
+    "code": "KR",
+    "rating": 5
+  },
+  {
+    "username": "raquel_borges",
+    "email": "raquel.borges@hotmail.com",
+    "review": "Retirei 500 BRL e vou usar o valor para investir em imóveis.",
+    "code": "BR",
+    "rating": 4
+  },
+  {
+    "username": "kevin_liu",
+    "email": "kevin_liu@yahoo.com",
+    "review": "成功提取了500美元，计划用于扩大我的投资项目。",
+    "code": "CN",
+    "rating": 5
+  },
+  {
+    "username": "mohammad_sami",
+    "email": "mohammad.sami@gmail.com",
+    "review": "تم سحب 350 USD بسهولة، وأخطط لاستخدامها في الاستثمار في مشروع جديد.",
+    "code": "SA",
+    "rating": 4
+  },
+  {
+    "username": "sophie_leclerc",
+    "email": "sophie.leclerc@gmail.com",
+    "review": "Le retrait de 400 USD s'est effectué sans problème, et je vais les utiliser pour des projets futurs.",
+    "code": "FR",
+    "rating": 5
+  },
+  {
+    "username": "joseph_williams",
+    "email": "joseph.williams@gmail.com",
+    "review": "The withdrawal process was easy, but I wish it was quicker. I withdrew 400 USD.",
+    "code": "US",
+    "rating": 3
+  },
+  {
+    "username": "markus_herrmann",
+    "email": "markus.herrmann@gmail.com",
+    "review": "Die Auszahlung von 350 USD war problemlos, aber ich hatte eine schnellere Bearbeitung erwartet.",
+    "code": "DE",
+    "rating": 3
+  },
+  {
+    "username": "chris_doe",
+    "email": "chris.doe@gmail.com",
+    "review": "I withdrew 400 USD smoothly, and I will use it for future savings.",
+    "code": "US",
+    "rating": 5
+  },
+  {
+    "username": "noora_ahmed",
+    "email": "noora.ahmed@gmail.com",
+    "review": "سحبت 500 USD بسهولة وأنا أنوي استخدامه في تطوير مشروعي الخاص.",
+    "code": "AE",
+    "rating": 5
+  },
+  {
+    "username": "laura_diaz",
+    "email": "laura.diaz@gmail.com",
+    "review": "Retiré 350 USD sin problemas, y tengo pensado usarlo para pagar algunas cuentas.",
+    "code": "ES",
+    "rating": 4
+  },
+  {
+    "username": "valerio_bianchi",
+    "email": "valerio.bianchi@gmail.com",
+    "review": "Ho ritirato 450 USD senza alcun problema, e ho intenzione di usarli per nuovi investimenti.",
+    "code": "IT",
+    "rating": 5
+  },
+  {
+    "username": "george_patel",
+    "email": "george.patel@gmail.com",
+    "review": "I withdrew 500 USD without any issues, and I will invest it in a new business opportunity.",
+    "code": "IN",
+    "rating": 5
+  },
+  {
+    "username": "ella_hansen",
+    "email": "ella.hansen@gmail.com",
+    "review": "I withdrew 300 USD easily and will use it for my personal savings.",
+    "code": "DK",
+    "rating": 4
+  },
+  {
+    "username": "natalia_silva",
+    "email": "natalia.silva@gmail.com",
+    "review": "Retirei 350 USD sem dificuldades, e vou usar para um novo projeto de negócios.",
+    "code": "BR",
+    "rating": 4
+  },
+  {
+    "username": "nina_fernandez",
+    "email": "nina.fernandez@gmail.com",
+    "review": "Saqué 500 USD rápidamente, y los voy a utilizar para expandir mi negocio.",
+    "code": "AR",
+    "rating": 5
+  },
+  {
+    "username": "tom_hanson",
+    "email": "tom.hanson@gmail.com",
+    "review": "Withdrew 350 USD with no problems, but the processing time was a bit longer than expected.",
+    "code": "US",
+    "rating": 3
+  },
+
+  {
+    "username": "olga_morozova",
+    "email": "olga.morozova@yahoo.com",
+    "review": "Вывел 500 USD и собираюсь использовать их для расширения бизнеса.",
+    "code": "RU",
+    "rating": 5
+  },
+  {
+    "username": "david_martin",
+    "email": "david.martin@gmail.com",
+    "review": "I withdrew 350 USD with no problems, and I plan to use it for savings.",
+    "code": "US",
+    "rating": 4
+  },
+  {
+    "username": "carla_jimenez",
+    "email": "carla.jimenez@hotmail.com",
+    "review": "Retiré 500 MXN fácilmente, y planeo invertirlo en el mercado de valores.",
+    "code": "MX",
+    "rating": 5
+  },
+  {
+    "username": "henrik_olsen",
+    "email": "henrik.olsen@gmail.com",
+    "review": "The withdrawal of 400 USD was fast and I will use it for some personal expenses.",
+    "code": "NO",
+    "rating": 5
+  },
+  {
+    "username": "emily_wong",
+    "email": "emily.wong@gmail.com",
+    "review": "I withdrew 500 USD and will use it to further my investment plans.",
+    "code": "SG",
+    "rating": 5
+  },
+  {
+    "username": "mohammad_khan",
+    "email": "mohammad.khan@yahoo.com",
+    "review": "سحبت 450 USD بدون مشاكل وسأستخدمها لتمويل مشروع صغير.",
+    "code": "PK",
+    "rating": 4
+  },
+  {
+    "username": "samantha_jones",
+    "email": "samantha.jones@gmail.com",
+    "review": "The withdrawal of 350 USD went smoothly, and I’ll use it for a personal project.",
+    "code": "US",
+    "rating": 4
+  },
+  {
+    "username": "ana_moreno",
+    "email": "ana.moreno@gmail.com",
+    "review": "Retiré 350 USD sin problemas y los utilizaré para pagar deudas.",
+    "code": "ES",
+    "rating": 4
+  },
+  {
+    "username": "josef_smith",
+    "email": "josef.smith@gmail.com",
+    "review": "I withdrew 400 USD and I am planning to use it for investment purposes.",
+    "code": "US",
+    "rating": 5
+  },
+  {
+    "username": "veronique_petit",
+    "email": "veronique.petit@gmail.com",
+    "review": "Le retrait de 500 USD a été rapide, et je vais les utiliser pour des investissements personnels.",
+    "code": "FR",
+    "rating": 5
+  },
+  {
+    "username": "marta_santos",
+    "email": "marta.santos@gmail.com",
+    "review": "Retirei 500 BRL sem dificuldades e pretendo investir em um novo negócio.",
+    "code": "BR",
+    "rating": 5
+  },
+  {
+    "username": "jose_fernandez",
+    "email": "jose.fernandez@gmail.com",
+    "review": "I withdrew 400 USD easily, and I plan to use it to start a small business.",
+    "code": "ES",
+    "rating": 5
+  },
+  {
+    "username": "julia_hansen",
+    "email": "julia.hansen@yahoo.com",
+    "review": "The withdrawal process was easy, but I hoped for a faster transfer. I withdrew 350 USD.",
+    "code": "NO",
+    "rating": 3
+  },
+  {
+    "username": "dmitry_pavlov",
+    "email": "dmitry.pavlov@gmail.com",
+    "review": "Вывел 450 USD быстро, планирую использовать их для расширения бизнеса.",
+    "code": "RU",
+    "rating": 5
+  },
+  {
+    "username": "lars_nielsen",
+    "email": "lars.nielsen@gmail.com",
+    "review": "Udbetalingen på 350 USD var nem, men jeg havde håbet på en hurtigere behandling.",
+    "code": "DK",
+    "rating": 3
+  },
+  {
+    "username": "tanya_williams",
+    "email": "tanya.williams@gmail.com",
+    "review": "I withdrew 500 USD with no issues, and I’ll use the funds for future investments.",
+    "code": "US",
+    "rating": 5
+  },
+  {
+    "username": "henry_gomez",
+    "email": "henry.gomez@yahoo.com",
+    "review": "Retiré 400 USD sin problemas y los usaré para pagar algunas cuentas.",
+    "code": "CO",
+    "rating": 4
+  },
+  {
+    "username": "nina_perez",
+    "email": "nina.perez@gmail.com",
+    "review": "The withdrawal of 350 USD was fast and I will use it for personal expenses.",
+    "code": "ES",
+    "rating": 4
+  },
+  {
+    "username": "simon_lee",
+    "email": "simon.lee@gmail.com",
+    "review": "I withdrew 500 USD and plan to use it for a new business opportunity.",
+    "code": "HK",
+    "rating": 5
+  },
+  {
+    "username": "susan_brown",
+    "email": "susan.brown@gmail.com",
+    "review": "The withdrawal of 350 USD was smooth, but I expected the process to be quicker.",
+    "code": "US",
+    "rating": 3
+  },
+  {
+    "username": "paul_smith",
+    "email": "paul.smith@gmail.com",
+    "review": "I withdrew 500 USD, and I will use it for personal savings.",
+    "code": "UK",
+    "rating": 4
+  },
+  {
+    "username": "lorena_smith",
+    "email": "lorena.smith@outlook.com",
+    "review": "I withdrew 400 USD and I plan to use it to expand my business.",
+    "code": "CA",
+    "rating": 5
+  },
+  {
+    "username": "giovanni_rossi",
+    "email": "giovanni.rossi@gmail.com",
+    "review": "Ho ritirato 400 USD senza difficoltà, e ho intenzione di usarli per un nuovo progetto.",
+    "code": "IT",
+    "rating": 5
+  },
+  {
+    "username": "mary_jones",
+    "email": "mary.jones@gmail.com",
+    "review": "Withdrew 450 USD without problems, and I plan to use it for an investment.",
+    "code": "US",
+    "rating": 5
+  },
+  {
+    "username": "mohamed_ali",
+    "email": "mohamed.ali@gmail.com",
+    "review": "تم سحب 500 USD بسهولة، وأخطط لاستخدامها في مشاريع جديدة.",
+    "code": "EG",
+    "rating": 5
+  },
+  {
+    "username": "linda_wilson",
+    "email": "linda.wilson@hotmail.com",
+    "review": "I withdrew 350 USD without any issues, and I’ll use it for personal savings.",
+    "code": "CA",
+    "rating": 4
+  },
+  {
+    "username": "roberto_garcia",
+    "email": "roberto.garcia@gmail.com",
+    "review": "Retiré 450 USD sin problemas y los usaré para invertir en propiedades.",
+    "code": "MX",
+    "rating": 5
+  },
+  {
+    "username": "martin_kovacs",
+    "email": "martin.kovacs@yahoo.com",
+    "review": "A kifizetés 400 USD gyorsan megtörtént, és a pénzt új üzleti lehetőségekbe fektetem.",
+    "code": "HU",
+    "rating": 5
+  },
+  {
+    "username": "anna_steiner",
+    "email": "anna.steiner@gmail.com",
+    "review": "Die Auszahlung von 350 USD war problemlos, aber ich hatte eine schnellere Bearbeitung erwartet.",
+    "code": "DE",
+    "rating": 3
+  },
+  {
+    "username": "edward_smith",
+    "email": "edward.smith@yahoo.com",
+    "review": "I withdrew 450 USD and will use it to pay off some personal bills.",
+    "code": "US",
+    "rating": 4
+  },
+  {
+    "username": "johann_keller",
+    "email": "johann.keller@gmail.com",
+    "review": "Die Auszahlung von 500 USD war schnell und problemlos, ich werde das Geld für Investitionen nutzen.",
+    "code": "DE",
+    "rating": 5
   }
 ]

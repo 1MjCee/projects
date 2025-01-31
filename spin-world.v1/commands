@@ -16,10 +16,10 @@ sudo lsof -i :80
 sudo usermod -aG sudo username
 
 # removing server from known hosts
-ssh-keygen -R 162.246.21.20
+ssh-keygen -R 192.64.83.2
 
 # Conecting to remote server with password only
-ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no root@162.246.21.20
+ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no root@192.64.83.2
 
 # Applying migrations manually
 sudo docker compose exec backend python3 /app/backend/manage.py migrate

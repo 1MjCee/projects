@@ -155,7 +155,7 @@ const DigTreasure = () => {
       >
         {currentRecords.length > 0 ? (
           currentRecords.map((record, index) => (
-            <Col key={index} xs={12} className="mb-2 px-1">
+            <Col key={index} xs={12} className="mb-2 ml-2 px-2">
               <Card
                 style={{
                   backgroundColor: "#010048",

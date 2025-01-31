@@ -7,6 +7,7 @@ import InvestButton from "./InvestButton";
 import { fetchUser } from "@/reduxStore/slices/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CurrencyConverter from "@/app/utils/CurrencyConverter";
+import { TbArrowsExchange2 } from "react-icons/tb";
 
 const InvestmentCard = ({
   name,
@@ -97,7 +98,8 @@ const InvestmentCard = ({
               ) : (
                 <span>
                   {currency.currency_code}{" "}
-                  <span style={{ color: "#DA9100" }}>{investmentPrice}</span> ||{" "}
+                  <span style={{ color: "#DA9100" }}>{investmentPrice}</span>{" "}
+                  <TbArrowsExchange2 size={18} />{" "}
                   <CurrencyConverter
                     amountInBaseCurrency={investmentPrice}
                     targetCurrency={target_currency}
@@ -129,7 +131,7 @@ const InvestmentCard = ({
               }}
             >
               Daily Withdrawal Limit: {currency.currency_code}{" "}
-              {dailyWithdrawLimit} ||{" "}
+              {dailyWithdrawLimit} <TbArrowsExchange2 size={18} />{" "}
               <CurrencyConverter
                 amountInBaseCurrency={dailyWithdrawLimit}
                 targetCurrency={target_currency}

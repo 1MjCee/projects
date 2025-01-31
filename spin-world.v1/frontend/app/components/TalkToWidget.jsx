@@ -7,7 +7,7 @@ const TawkToWidget = () => {
       const script = document.createElement("script");
       script.id = "tawk-to-script";
       script.async = true;
-      script.src = "https://embed.tawk.to/673df87b2480f5b4f5a117dc/1id515946";
+      script.src = "https://embed.tawk.to/6785a723af5bfec1dbeb0d18/1ihh19onn";
       script.charset = "UTF-8";
       script.setAttribute("crossorigin", "*");
 

@@ -171,7 +171,7 @@ const PaymentForm = () => {
 
         {/* Display Payment Currency */}
         <Form.Group className="mt-3">
-          <Form.Label className="text-light">Payment Currency</Form.Label>
+          <Form.Label className="text-light">Base Currency</Form.Label>
           <Form.Control
             id="payment-currency"
             type="text"

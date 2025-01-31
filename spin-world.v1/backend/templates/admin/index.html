@@ -22,6 +22,19 @@
 
 {% block content %}
     {% component "unfold/components/flex.html" with class="gap-3 flex-wrap" %}
+        {% comment %} System Balance Card as a full-width row {% endcomment %}
+        <div class="w-full">
+            {% component "unfold/components/card.html" with class="lg:w-full" %}
+                {% component "unfold/components/title.html" %}
+                    <h6 class="text-center text-xs">System Balance</h6>
+                {% endcomponent %}
+                {% component "unfold/components/text.html" %}
+                    <h3 class="text-md text-center font-semibold">{{ system_balance|intcomma }}</h3>
+                {% endcomponent %}
+            {% endcomponent %}
+        </div>
+
+        {% comment %} Existing Cards {% endcomment %}
         {% for card in cards %}
             {% component "unfold/components/card.html" with class="flex-1 lg:w-full sm:w-80" %}
                 {% component "unfold/components/title.html" %}

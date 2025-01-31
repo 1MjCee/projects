@@ -18,6 +18,7 @@ import {
 } from "@/reduxStore/slices/UserInvestmentSlice";
 import CurrencyConverter from "@/app/utils/CurrencyConverter";
 import { fetchUser } from "@/reduxStore/slices/UserSlice";
+import { TbArrowsExchange2 } from "react-icons/tb";
 
 const Investments = () => {
   const dispatch = useDispatch();
@@ -102,7 +103,7 @@ const Investments = () => {
                     {plans[0].investment_plan.daily_withdraw_limit}
                   </span>
                 </span>{" "}
-                ||{" "}
+                <TbArrowsExchange2 size={18} />{" "}
                 <span>
                   {" "}
                   <CurrencyConverter

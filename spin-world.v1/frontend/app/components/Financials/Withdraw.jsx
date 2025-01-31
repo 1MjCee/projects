@@ -22,9 +22,11 @@ import CurrencyConverter from "@/app/utils/CurrencyConverter";
 import { fetchUser } from "@/reduxStore/slices/UserSlice";
 import { fetchPaymentTypes } from "@/reduxStore/slices/PaymentTypeSlice";
 import Image from "next/image";
+import { TbArrowsExchange2 } from "react-icons/tb";
 
 const Withdraw = () => {
   const [amount, setAmount] = useState("");
+  const [account, setAccount] = useState("");
   const dispatch = useDispatch();
   const { balance, totalEarnings, currency } = useSelector(selectWallet);
   const { userInfo } = useSelector((state) => state.user);
@@ -59,6 +61,7 @@ const Withdraw = () => {
     dispatch(fetchPaymentTypes());
     if (success) {
       setAmount("");
+      setAccount("");
     }
   }, [dispatch, success]);
 
@@ -80,6 +83,7 @@ const Withdraw = () => {
 
   // Access user's country currency symbol
   const target_currency = userInfo?.country?.currency;
+  const country = userInfo?.country?.country;
 
   return (
     <Container fluid className="px-0">
@@ -189,10 +193,10 @@ const Withdraw = () => {
                 <Card.Text>
                   <span className="text-center">
                     Withdrawable Balance <br />
-                    {formatCurrency(
-                      totalEarnings,
-                      currency.currency_code
-                    )} ||{" "}
+                    {formatCurrency(totalEarnings, currency.currency_code)}{" "}
+                    <span>
+                      <TbArrowsExchange2 size={18} />
+                    </span>{" "}
                     <CurrencyConverter
                       amountInBaseCurrency={totalEarnings}
                       targetCurrency={target_currency}
@@ -206,7 +210,10 @@ const Withdraw = () => {
         <hr />
         <Row>
           <Col>
-            <h7 style={{ color: "#fafafa" }}> Select Payment Method</h7>
+            <h5 style={{ color: "#fafafa" }}> Select Payment Method</h5>
+            <p style={{ color: "#DA9100" }}>
+              Here are the Payment Methods available in {country}
+            </p>
             <Form className="d-flex flex-wrap">
               {userPaymentTypes.map((paymentType) => (
                 <div
@@ -250,8 +257,23 @@ const Withdraw = () => {
             </Form>
           </Col>
         </Row>
-
-        <hr />
+        <Row>
+          <Form>
+            <Form.Group>
+              <Form.Label>Number/Email/Wallet Address</Form.Label>
+              <Form.Control
+                id="wallet-address"
+                type="text"
+                value={account}
+                onChange={(e) => setAccount(e.target.value)}
+                required
+                placeholder="Enter Account/email/wallet"
+                disabled={loading}
+                autoComplete="on"
+              ></Form.Control>
+            </Form.Group>
+          </Form>
+        </Row>
 
         <Form className="mb-4">
           <Form.Group>

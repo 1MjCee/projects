@@ -196,7 +196,7 @@ class WithdrawalViewSet(viewsets.ViewSet):
             print(f"Transaction record created: {transaction_record}")  
 
             serializer = TransactionSerializer(transaction_record)
-            return Response({'success': True, 'message': _('Withdrawal request has been submitted!'), 'transaction': serializer.data}, status=status.HTTP_201_CREATED)
+            return Response({'success': True, 'message': _('Withdrawal request has been submitted. It will be processed within 48 - 72 hours!'), 'transaction': serializer.data}, status=status.HTTP_201_CREATED)
 
         except Exception as e:
             print(f"Exception occurred: {str(e)}") 

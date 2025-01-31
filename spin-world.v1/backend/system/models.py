@@ -11,6 +11,7 @@ from django.core.exceptions import ValidationError
 from decimal import Decimal
 from datetime import timedelta
 import string
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import MinValueValidator
     
 
@@ -630,4 +631,61 @@ class PaymentConfigurations(models.Model):
     gateway = models.CharField(max_length=255, null=True, blank=True)
     api_key = models.CharField(max_length=255)
     ipn_secret = models.CharField(max_length=255)
+
+
+class SystemWalletManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get(self):
+        try:
+            return super().get()
+        except ObjectDoesNotExist:
+            superusers = User.objects.filter(is_superuser=True)
+            if superusers.exists():
+                owner = superusers.first()
+                wallet = SystemWallet.objects.create(owner=owner)
+                return wallet
+            else:
+                raise ValueError("No superuser found to assign a wallet.")
+
+class SystemWallet(models.Model):
+    owner = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, limit_choices_to={'is_superuser': True})
+    balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    objects = SystemWalletManager()
+
+    def __str__(self):
+        return f"System Wallet - Balance: {self.balance}"
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += Decimal(amount)
+            self.save()
+            return True
+        return False
+
+    def withdraw(self, amount):
+        amount = Decimal(amount)
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            self.save()
+            return True
+        return False
+
+    def transfer(self, amount, to_wallet):
+        if self.withdraw(amount):
+            if to_wallet.deposit(amount):
+                return True
+            else:
+                self.deposit(amount)
+                return False
+        return False
+
+    class Meta:
+        db_table = 'system_wallet'
+        verbose_name = "System Wallet"
+        verbose_name_plural = "System Wallets"
+        
             

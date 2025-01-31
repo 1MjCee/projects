@@ -10,7 +10,7 @@ const InviteCode = () => {
   const dispatch = useDispatch();
   const { referralCode, loading } = useSelector((state) => state.referralCode);
   const inviteLink = referralCode
-    ? `${siteUrl}/register?inviteCode=${referralCode}`
+    ? `${siteUrl}/auth/register?inviteCode=${referralCode}`
     : "";
 
   const [copyMessage, setCopyMessage] = useState("");

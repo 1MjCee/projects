@@ -4,14 +4,12 @@ import isTokenExpiringSoon from "./token_expire";
 
 export const getTokenFromLocalStorage = (tokenType) => {
   const tokenKey = tokenType === "refresh" ? "refresh_token" : "access_token";
-  const token = localStorage.getItem(tokenKey);
-  return token ? decrypt(token) : null;
+  return localStorage.getItem(tokenKey);
 };
 
 export const setTokenInLocalStorage = (token, tokenType) => {
-  const encryptedToken = encrypt(token);
   const tokenKey = tokenType === "refresh" ? "refresh_token" : "access_token";
-  localStorage.setItem(tokenKey, encryptedToken);
+  localStorage.setItem(tokenKey, token);
 };
 
 const api = axios.create({

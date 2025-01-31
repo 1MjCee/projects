@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.db.models import Sum
 from django.utils.timezone import now
 from django.contrib.admin.views.decorators import staff_member_required
-from system.models import User, Transaction, PromoCode, Referral, PaymentOrder
+from system.models import User, Transaction, PromoCode, Referral, PaymentOrder, SystemWallet
 from system.forms import PromoCodeGenerationForm 
 
 def generate_promo_code():
@@ -16,6 +16,7 @@ def dashboard_callback(request, context):
 
     # Statistics calculations
     context.update({
+        'system_balance': SystemWallet.objects.get().balance,
         'pending_withdrawals': "{:,.2f}".format(Transaction.objects.filter(type='withdrawal', status='pending').aggregate(total_amount=Sum('amount'))['total_amount'] or 0),
         'pending_withdrawals_count': Transaction.objects.filter(type='withdrawal', status='pending').count(),
         'completed_withdrawals': "{:,.2f}".format(Transaction.objects.filter(type='withdrawal', status='completed').aggregate(total_amount=Sum('amount'))['total_amount'] or 0),

@@ -1,6 +1,15 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
 
+class SystemWalletAdmin(ModelAdmin):
+    list_display = ('owner', 'balance', 'last_updated')
+    
+    list_editable = ()
+
+    ordering = ('-last_updated',)
+
+    readonly_fields = ('balance', 'last_updated',) 
+
 
 class WalletAdmin(ModelAdmin):
     # Display fields in the list view

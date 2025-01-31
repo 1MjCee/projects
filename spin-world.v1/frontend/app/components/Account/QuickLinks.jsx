@@ -125,6 +125,26 @@ const QuickLinks = () => {
             </Row>
           </Link>
 
+          {/* Join Groups Link */}
+          <Link
+            href="/dashboard/account/user/groups"
+            passHref
+            className="text-decoration-none"
+          >
+            <Row
+              style={{ border: "none" }}
+              className="align-items-center border rounded quick-link mb-2 py-1"
+            >
+              <Col xs={2} sm={1} className="text-center">
+                <FaRankingStar color="#DA9100" size={18} />
+              </Col>
+              <Col className="d-flex justify-content-between align-items-center">
+                <p className="mb-0 text-light">Join Groups</p>
+                <FaChevronRight color="#DA9100" size={20} />
+              </Col>
+            </Row>
+          </Link>
+
           {/* Change Password Link */}
           <Link
             href="/dashboard/account/user/password-update"

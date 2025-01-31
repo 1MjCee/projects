@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Image, ListGroup, Container, Row, Col } from "react-bootstrap";
 
