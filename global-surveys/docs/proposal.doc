@@ -1,0 +1,207 @@
+Project Proposal: SurveyPay Platform
+Overview
+SurveyPay is a web application designed to connect users with paid surveys. Users sign up, complete surveys composed of multiple questions, and earn $1 per question answered. The app will feature a Next.js frontend (using the latest App Router) for a modern, fast user experience and a Django backend for secure user management, survey creation, and payment processing. The project will be organized into two main folders: frontend (Next.js) and backend (Django).
+
+Objectives
+Provide an intuitive platform for users to browse and complete surveys.
+
+Ensure secure user authentication and payment tracking.
+
+Allow administrators to create and manage surveys.
+
+Pay users based on the number of questions they answer ($1 per question).
+
+Maintain a clean, modular codebase for scalability.
+
+Tech Stack
+Frontend: Next.js (using App Router) - for dynamic, server-rendered pages and a great user experience.
+
+Backend: Django (Python framework) - for robust API development, database management, and authentication.
+
+Database: PostgreSQL - reliable and scalable, integrates well with Django.
+
+Payment Integration: Stripe - for secure and straightforward payouts to users.
+
+Styling: Tailwind CSS - for rapid, responsive design.
+
+Deployment: Vercel (frontend), Heroku/DigitalOcean (backend) - easy and scalable hosting.
+
+Project Structure
+Copy
+SurveyPay/
+├── frontend/           # Next.js frontend (App Router)
+│   ├── app/            # App Router directory
+│   │   ├── (auth)/     # Authentication routes (login, signup)
+│   │   ├── dashboard/  # User dashboard (profile, surveys)
+│   │   ├── survey/     # Survey-related pages
+│   │   ├── layout.tsx  # Root layout
+│   │   └── page.tsx    # Home page
+│   ├── components/     # Reusable UI components (e.g., SurveyCard, Question)
+│   ├── lib/            # Utility functions (e.g., API calls)
+│   ├── styles/         # Tailwind CSS and global styles
+│   └── package.json    # Dependencies and scripts
+└── backend/            # Django backend
+    ├── surveypay/      # Main Django app
+    ├── surveys/        # App for survey-related models and logic
+    ├── users/         # App for user management
+    ├── payments/       # App for payment processing
+    ├── manage.py       # Django management script
+    └── requirements.txt # Python dependencies
+Detailed Description
+Features
+User Authentication
+
+Users can sign up, log in, and log out.
+
+Profile page to view earnings and completed surveys.
+
+Survey System
+
+Surveys consist of multiple questions (e.g., multiple-choice, text input).
+
+Users can browse available surveys and select one to complete.
+
+Progress is saved, and users earn $1 per question upon completion.
+
+Payment System
+
+Earnings are tracked in the user’s account ($1 per question).
+
+Users can request payouts via Stripe once they reach a minimum threshold (e.g., $10).
+
+Admin Dashboard
+
+Admins can create, edit, and delete surveys.
+
+View user activity and payout requests.
+
+Responsive Design
+
+Mobile-friendly interface for accessibility on all devices.
+
+Frontend (Next.js with App Router)
+The frontend will handle the user interface and communicate with the backend via RESTful APIs. Using the App Router allows for better organization and server-side rendering.
+
+Key Pages:
+/: Home page with a list of available surveys.
+
+/survey/[id]: Dynamic page to complete a specific survey.
+
+/dashboard: User dashboard showing earnings and history.
+
+/(auth)/login and /(auth)/signup: Authentication pages.
+
+Components:
+SurveyCard: Displays survey title, number of questions, and potential earnings.
+
+Question: Renders individual survey questions with input options.
+
+Navbar: Navigation bar with links to home, profile, and logout.
+
+API Calls:
+Fetch surveys: GET /api/surveys/
+
+Submit answers: POST /api/surveys/[id]/submit
+
+Get user data: GET /api/user/profile
+
+Request payout: POST /api/payments/request
+
+Backend (Django)
+The backend will manage data, business logic, and integrations.
+
+Apps:
+users: Handles authentication and user profiles.
+
+Models: User (extends Django’s AbstractUser), Profile (earnings, payment info).
+
+surveys: Manages survey creation and submissions.
+
+Models: Survey, Question, Answer.
+
+payments: Tracks earnings and processes payouts.
+
+Models: Transaction.
+
+API Endpoints:
+GET /api/surveys/: List all available surveys.
+
+GET /api/surveys/[id]: Get details of a specific survey.
+
+POST /api/surveys/[id]/submit: Submit answers and calculate earnings.
+
+POST /api/payments/request: Initiate a payout via Stripe.
+
+Payment Logic:
+When a user submits a survey, calculate earnings (# questions × $1).
+
+Store earnings in the Profile model.
+
+Use Stripe API to process payouts when requested.
+
+Database Schema (PostgreSQL)
+User:
+
+id, username, email, password, created_at, updated_at.
+
+Profile:
+
+id, user_id (ForeignKey to User), earnings, stripe_customer_id.
+
+Survey:
+
+id, title, description, created_by (ForeignKey to User), created_at.
+
+Question:
+
+id, survey_id (ForeignKey to Survey), text, type (e.g., multiple-choice, text).
+
+Answer:
+
+id, question_id (ForeignKey to Question), user_id (ForeignKey to User), response.
+
+Transaction:
+
+id, user_id (ForeignKey to User), amount, status, created_at.
+
+Implementation Steps
+Set Up Next.js Frontend:
+
+Initialize a Next.js project with the App Router.
+
+Set up Tailwind CSS for styling.
+
+Create reusable components (e.g., SurveyCard, Question).
+
+Implement API calls to the Django backend.
+
+Set Up Django Backend:
+
+Initialize a Django project and create apps for users, surveys, and payments.
+
+Set up PostgreSQL and configure Django to use it.
+
+Implement RESTful APIs using Django REST Framework.
+
+Integrate Stripe:
+
+Set up Stripe for payment processing.
+
+Implement payout logic in the payments app.
+
+Deploy:
+
+Deploy the Next.js frontend on Vercel.
+
+Deploy the Django backend on Heroku or DigitalOcean.
+
+Timeline
+Week 1-2: Set up Next.js frontend and Django backend.
+
+Week 3-4: Implement user authentication and survey functionality.
+
+Week 5: Integrate Stripe for payments.
+
+Week 6: Test and deploy the application.
+
+This proposal provides a detailed roadmap for building the SurveyPay platform. Let me know if you need further clarification or assistance! 
