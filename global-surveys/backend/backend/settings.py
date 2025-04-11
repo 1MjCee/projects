@@ -1,90 +1,48 @@
 from pathlib import Path
-import os
 from datetime import timedelta
-from dotenv import load_dotenv
+import os
 from django.templatetags.static import static
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from celery.schedules import crontab
-
-load_dotenv()
-
-AUTH_USER_MODEL = "system.User"
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Systemwide User
+AUTH_USER_MODEL = 'users.User'
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-# Now Payments Api
-NOWPAYMENTS_API_KEY = os.environ.get("NOWPAYMENTS_API_KEY")
-
-# Exhange Rates API
-EXCHANGE_API_KEY = os.getenv('EXCHANGE_API_KEY')
-
-# GEO iP DETAILS
-GEOIP_ACCOUNT_ID = os.environ.get("GEOIP_ACCOUNT_ID")
-GEOIP_LICENSE_KEY = os.environ.get("GEOIP_LICENSE_KEY")
-IP_INFO_API_KEY = os.environ.get("IP_INFO")
+SECRET_KEY = 'django-insecure-y_(zyit52mzum&2vxg0@vsdi2yhp9za@ab#4i6a(i3%!usgk6c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", '162.246.21.20', 'spin-world.site']
+ALLOWED_HOSTS = ['*', 'vivo-agency.site', 'global-surveys-frontend.vercel.app']
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0' 
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
-
-CELERY_BEAT_SCHEDULE = {
-    # Task to check user rankings every 5 minutes
-    'check_user_rankings': {
-        'task': 'system.tasks.check_user_rankings',
-        'schedule': crontab(minute='*/5'),
-    },
-    # Task to check investment expiration every 5 minutes
-    'check_investment_expiration': {
-        'task': 'system.tasks.check_investment_expiration',
-        'schedule': crontab(minute='*/5'),  # Run every 5 minutes
-    },
-    # Task to reset spin count at midnight every day
-    'reset_spin_count': {
-        'task': 'system.tasks.reset_spin_count',
-        'schedule': crontab(minute=0, hour=0), 
-    },
-    # Task to fetch exchange rates every hour
-    'fetch_exchange_rates': {
-        'task': 'system.tasks.fetch_exchange_rates',
-        'schedule': crontab(minute=0),
-    },
-}
 
 # Application definition
 INSTALLED_APPS = [
-    'unfold',
-    "unfold.contrib.filters",
-    "unfold.contrib.forms", 
-    "unfold.contrib.inlines",  
-    "unfold.contrib.import_export",  
-    'import_export',
-    "unfold.contrib.guardian",  
-    "unfold.contrib.simple_history",
+    "unfold",
+
+    # Default Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'system',
-    'rest_framework',
-    'rest_framework_simplejwt.token_blacklist',
-    'corsheaders',
-    'django.contrib.humanize',
     'django_extensions',
+
+    # Apis
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'corsheaders',
+
+    # Apps Added Here
+    'users',
+    'surveys',
 ]
 
 MIDDLEWARE = [
@@ -98,31 +56,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-}
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15), 
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  
-    'ROTATE_REFRESH_TOKENS': True,  
-    'BLACKLIST_AFTER_ROTATION': True,  
-    'AUTH_HEADER_TYPES': ('Bearer',),  
-    'AUTH_COOKIE': 'access_token', 
-    
-}
-
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,27 +76,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Databases
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#         'OPTIONS': {
-#             'timeout': 20,
-#         }
-#     }
-# }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'anexx_db',
-        'USER': 'anexx',
-        'PASSWORD': 'anexx61', 
-        'HOST': 'db',
-        'PORT': '5432',
+# Database
+if DEBUG: 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-} 
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT'),
+        }
+    }
 
 
 # Password validation
@@ -176,18 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-#         'LOCATION': 'redis://127.0.0.1:6379/1',  # Redis server URL
-#     }
-# }
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-    }
-}
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
@@ -200,64 +126,73 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-STATIC_URL = '/django_static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'django_static')
+STATIC_URL = '/static/'  
+STATICFILES_DIRS = [  
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configure CORS
+AUTHENTICATION_BACKENDS = [
+    'auth_backends.EmailBackend',  
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+
+# JWT settings
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+# Allow requests from your frontend origin
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://spin-world.site"
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "https://spin-world.site"
-]
-
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
+    "http://localhost:3000",
+    'https://vivo-agency.site',
+    'https://global-surveys-frontend.vercel.app'
 ]
 
 CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-    'PUT',
-    'PATCH',
-    'DELETE',
-    'OPTIONS',
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
 ]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "authorization",
+    "content-type",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+# If you need cookies to be included in cross-site requests
+CORS_ALLOW_CREDENTIALS = True
 
 
 UNFOLD = {
-    "SITE_TITLE": "Spin World",
-    "SITE_HEADER": "Spin World",
+    "SITE_TITLE": "User Management",
+    "SITE_HEADER": "User Management",
     "SITE_URL": "/",
-    
-    "SITE_SYMBOL": "speed",  
-    
-    "SHOW_VIEW_ON_SITE": True, 
-    "DASHBOARD_CALLBACK": "backend.views.dashboard_callback",
-    "SHOW_HISTORY": True,
-    "SHOW_VIEW_ON_SITE": False,
-    
+    "SITE_ICON": None,  # or path to your icon
+    "DASHBOARD_CALLBACK": None,
     "COLORS": {
-        "font": {
-            "subtle-light": "107 114 128",
-            "subtle-dark": "156 163 175",
-            "default-light": "75 85 99",
-            "default-dark": "209 213 219",
-            "important-light": "17 24 39",
-            "important-dark": "243 244 246",
-        },
         "primary": {
             "50": "250 245 255",
             "100": "243 232 255",
@@ -272,67 +207,43 @@ UNFOLD = {
             "950": "59 7 100",
         },
     },
-    "EXTENSIONS": {
-        "modeltranslation": {
-            "flags": {
-                "en": "🇬🇧",
-                "fr": "🇫🇷",
-                "nl": "🇧🇪",
-            },
-        },
-    },
     "SIDEBAR": {
-        "show_search": True,
-        "show_all_applications": True,
-        
+        "show_search": False,  # Search in applications and models names
+        "show_all_applications": False,  # Dropdown with all applications and models
         "navigation": [
             {
-                "separator": True,
-                "collapsible": True,
+                "title": _("Navigation"),
+                "separator": True,  # Top border
                 "items": [
                     {
                         "title": _("Dashboard"),
-                        "icon": "dashboard",
+                        "icon": "dashboard",  
                         "link": reverse_lazy("admin:index"),
                         "permission": lambda request: request.user.is_superuser,
                     },
                     {
                         "title": _("Users"),
                         "icon": "people",
-                        "link": reverse_lazy("admin:system_user_changelist"),
+                        "link": reverse_lazy("admin:users_userprofile_changelist"),
                     },
                     {
-                        "title": _("Transactions"),
-                        "icon": "contract",
-                        "link": reverse_lazy("admin:system_transaction_changelist"),
-                    },
-                    {
-                        "title": _("Subscription Plans"),
-                        "icon": "inventory",
-                        "link": reverse_lazy("admin:system_investmentplan_changelist"),
-                    },
-                    {
-                        "title": _("Payment Orders"),
-                        "icon": "inventory",
-                        "link": reverse_lazy("admin:system_paymentorder_changelist"),
-                    },
-                    {
-                        "title": _("Wallets"),
-                        "icon": "wallet",
-                        "link": reverse_lazy("admin:system_wallet_changelist"),
+                        "title": _("Surveys"),
+                        "icon": "people",
+                        "link": reverse_lazy("admin:surveys_survey_changelist"),
                     },
                     {
                         "title": _("Referrals"),
-                        "icon": "groups",
-                        "link": reverse_lazy("admin:system_referral_changelist"),
+                        "icon": "people",
+                        "link": reverse_lazy("admin:users_referreduser_changelist"),
                     },
-                     {
-                        "title": _("Payment Methods"),
-                        "icon": "payments",
-                        "link": reverse_lazy("admin:system_paymentmethod_changelist"),
+                    {
+                        "title": _("Referral Levels"),
+                        "icon": "people",
+                        "link": reverse_lazy("admin:users_referrallevel_changelist"),
                     },
                 ],
             },
         ],
     },
 }
+

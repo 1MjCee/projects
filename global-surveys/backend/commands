@@ -1,0 +1,5 @@
+rsync -avz --progress --exclude .venv . survey-backend:/home/ubuntu/app/
+
+
+sudo certbot certonly --nginx -d vivo-agency.site 
+
